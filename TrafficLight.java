@@ -1,20 +1,13 @@
-public class TrafficLight implements Runnable {
+import java.util.TimerTask;
+
+public class TrafficLight extends TimerTask {
 	TrafficLightColor tlc;
-	int id;
-	String name;
 	boolean on;
 
-	public TrafficLight(int id, String name) {
+	public TrafficLight() {
 		tlc = TrafficLightColor.RED;
-		this.id = id;
-		this.name = name;
 	}
 	
-	public TrafficLight(int id) {
-		tlc = TrafficLightColor.RED;
-		this.id = id;
-	}
-
 	public void run() {
 		on = true;
 		while (on) {
