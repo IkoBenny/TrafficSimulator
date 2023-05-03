@@ -17,8 +17,13 @@ public class Scheduler {
 	}
 	
 	public static void main (String [] args) {
-		Time c = new Time();
+		Car c = new Car();
+		//c.run();
+		TrafficLight tl = new TrafficLight();
+		//tl.run();
 		Timer t = new Timer();
-		t.schedule(c, 1000, 1000);
+		Timer t2 = new Timer();
+		t2.schedule(c, 1000, 1000);
+		t.schedule(tl, 2000, 2000);
 	}
 }

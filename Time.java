@@ -8,8 +8,14 @@ public class Time extends TimerTask {
 		
 		@Override
 		public void run() {
+		}
+	
+		public String toString() {
 			instant = Instant.now();
-			System.out.println(instant.toString());
+			return instant.toString();
 		}
 		
+		public long timestamp() {
+			return Instant.now().toEpochMilli();
+		}
 	}
