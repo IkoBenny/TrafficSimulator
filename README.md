@@ -26,6 +26,7 @@ Real Time Processing
 Concurrent Processing
 RTSJ (Real Time Specification for Java, classes, excpetions, expectations, etc.)
 Git - Fork, Commit, Push, Pull, Cherry Pick, .GitIgnore, Stable branches, Feature and Release branches.
+EPOCH time.
 
 #DesignPatterns
 This section includes lessons learned about design patterns.
