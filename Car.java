@@ -2,29 +2,14 @@ import java.awt.geom.Point2D;
 import java.time.Instant;
 import java.util.TimerTask;
 
-/*
- * A Car has a position [X,Y] and a current speed. 
- * A Car has two default settings speeds. When a car is created, its speed is 0 or it is stopped. 
- * A Car also moves or goes at 55 miles per hour/290400 feet per hour, and can stop or go. 
- * 
- * */
-
 public class Car extends TimerTask {
-	private static final double START_SPEED = 290400 / 120; // 55 miles per hour/290400 feet per hour
-	private static final double STOP_SPEED = 0.0;
 	private double currentSpeed;
-	private Point2D position; // x,y position
+	private Point2D position;
 	private Instant lastStop;
 	private boolean isMoving;
-
-	/*
-	 * A Car is given a start position [X,Y] to be placed on the graph. 
-	 * When a car is created, its speed is 0 or it is stopped. 
-	 * lastStop is used for calculating distance.
-	 * */
 	
-	public Car(Point2D.Double start) {
-		currentSpeed = STOP_SPEED;
+	public Car(Point2D.Double start, double speed) {
+		currentSpeed = speed;
 		position = start;
 		isMoving = false;
 		lastStop = Instant.now();
@@ -37,7 +22,7 @@ public class Car extends TimerTask {
 		if (isMoving == false) {
 			isMoving = true;
 			lastStop = Instant.now();
-			currentSpeed = START_SPEED;
+			currentSpeed = Constants.START_SPEED;
 			for (int i = 0; i < 100000; i++) {
 				updatePosition();
 				System.out.println("currentPosition: " + position);
@@ -56,19 +41,17 @@ public class Car extends TimerTask {
 		}
 
 		if (isMoving) {
-			double now = Instant.now().toEpochMilli() / 1000L; // milliseconds to seconds
-			double start = lastStop.toEpochMilli() / 1000L; // milliseconds to seconds
+			double now = Instant.now().toEpochMilli() / 1000.0; // milliseconds to seconds
+			double start = lastStop.toEpochMilli() / 1000.0; // milliseconds to seconds
 			double difference = now - start;
-			System.out.println(toString() + " moving for: " + difference + " seconds..");
 			double distance = difference * currentSpeed;
-			double currentDistanceTraveled = position.getX();
-			double newDistance = (long) (currentDistanceTraveled + distance);
-			position.setLocation(newDistance / 60, 0);
+			position.setLocation(distance, 0);
+			System.out.println(toString() + " moving for: " + difference + " seconds..");
 		}
 	}
 
 	public synchronized void stop() {
-		currentSpeed = STOP_SPEED;
+		currentSpeed = Constants.STOP_SPEED;
 	}
 
 	public synchronized double getCurrentSpeed() {
@@ -76,10 +59,7 @@ public class Car extends TimerTask {
 	}
 
 	public void setCurrentSpeed(double currentSpeed) {
-		if (currentSpeed >= 0 && currentSpeed <= 120)
 			this.currentSpeed = currentSpeed;
-		else
-			this.currentSpeed = 55;
 	}
 
 	@Override
@@ -87,4 +67,8 @@ public class Car extends TimerTask {
 		go();
 	}
 
+	/*
+	 * public static void main (String [] args) { Car c = new Car(new
+	 * Point2D.Double(0.0, 0.0), Constants.START_SPEED); c.run(); }
+	 */
 }

@@ -1,13 +1,13 @@
 import java.util.TimerTask;
 
 public class TrafficLight extends TimerTask {
-	TrafficLightColor tlc;
+	Constants.TrafficLightColor tlc;
 	boolean on;
 
 	public TrafficLight() {
-		tlc = TrafficLightColor.RED;
+		tlc = Constants.TrafficLightColor.RED;
 	}
-	
+
 	public void run() {
 		on = true;
 		while (on) {
@@ -36,24 +36,29 @@ public class TrafficLight extends TimerTask {
 	synchronized void changeColor() {
 		switch (tlc) {
 		case RED:
-			tlc = TrafficLightColor.GREEN;
+			tlc = Constants.TrafficLightColor.GREEN;
 			notifyAll();
 			break;
 		case YELLOW:
-			tlc = TrafficLightColor.RED;
+			tlc = Constants.TrafficLightColor.RED;
 			break;
 		case GREEN:
-			tlc = TrafficLightColor.YELLOW;
+			tlc = Constants.TrafficLightColor.YELLOW;
 		}
 		notify();
 	}
 
-	synchronized TrafficLightColor getColor() {
+	synchronized Constants.TrafficLightColor getColor() {
 		return tlc;
 	}
 
 	synchronized void lightswitch() {
 		on = !on;
+	}
+
+	public static void main(String[] args) {
+		TrafficLight tl = new TrafficLight();
+		tl.run();
 	}
 
 }
