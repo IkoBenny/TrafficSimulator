@@ -51,7 +51,7 @@ public class UserInterface extends TimerTask implements ActionListener, ChangeLi
 		slider = new JSlider(1, 5, 3);
 		slider2 = new JSlider(0, 120, 55);
 		slider3 = new JSlider(0, 120, 55);
-		slider4 = new JSlider(0, 120, 15);
+		slider4 = new JSlider(0, 120, 55);
 		slider5 = new JSlider(1, 5, 3);
 		slider.setMajorTickSpacing(1);
 		slider.setPaintTicks(true);
