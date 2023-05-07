@@ -4,22 +4,28 @@ import java.util.TimerTask;
 
 /*
  * A Car has a position [X,Y] and a current speed. 
- * A Car has two speeds. When a car is created, its speed is 0 or it is stopped. 
- * A Car moves or goes at 55 MPH, and can stop or go. 
- * 60 seconds inside the simulation == 60 minutes
+ * A Car has two default settings speeds. When a car is created, its speed is 0 or it is stopped. 
+ * A Car also moves or goes at 55 miles per hour/290400 feet per hour, and can stop or go. 
+ * 
  * */
 
 public class Car extends TimerTask {
-	private static final double START_SPEED = 55; // 55 miles per hour
+	private static final double START_SPEED = 290400 / 120; // 55 miles per hour/290400 feet per hour
 	private static final double STOP_SPEED = 0.0;
 	private double currentSpeed;
 	private Point2D position; // x,y position
 	private Instant lastStop;
-	boolean isMoving;
+	private boolean isMoving;
 
-	public Car() {
+	/*
+	 * A Car is given a start position [X,Y] to be placed on the graph. 
+	 * When a car is created, its speed is 0 or it is stopped. 
+	 * lastStop is used for calculating distance.
+	 * */
+	
+	public Car(Point2D.Double start) {
 		currentSpeed = STOP_SPEED;
-		position = new Point2D.Double(0, 0);
+		position = start;
 		isMoving = false;
 		lastStop = Instant.now();
 	}
@@ -53,7 +59,7 @@ public class Car extends TimerTask {
 			double now = Instant.now().toEpochMilli() / 1000L; // milliseconds to seconds
 			double start = lastStop.toEpochMilli() / 1000L; // milliseconds to seconds
 			double difference = now - start;
-			System.out.println(toString() + " moving for: " + difference + " minutes.");
+			System.out.println(toString() + " moving for: " + difference + " seconds..");
 			double distance = difference * currentSpeed;
 			double currentDistanceTraveled = position.getX();
 			double newDistance = (long) (currentDistanceTraveled + distance);
@@ -67,6 +73,13 @@ public class Car extends TimerTask {
 
 	public synchronized double getCurrentSpeed() {
 		return currentSpeed;
+	}
+
+	public void setCurrentSpeed(double currentSpeed) {
+		if (currentSpeed >= 0 && currentSpeed <= 120)
+			this.currentSpeed = currentSpeed;
+		else
+			this.currentSpeed = 55;
 	}
 
 	@Override
