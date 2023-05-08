@@ -1,4 +1,4 @@
-
+package sim;
 public class Constants {
 	public static final double STOP_SPEED = 0.0;
 	public static final double FEET_IN_A_MILE = 5280.0;

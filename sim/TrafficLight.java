@@ -1,3 +1,5 @@
+package sim;
+
 import java.util.TimerTask;
 
 public class TrafficLight extends TimerTask {
