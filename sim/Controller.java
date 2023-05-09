@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -64,6 +65,16 @@ public class Controller implements ActionListener, ChangeListener {
 				 * gui.getHomeScore().setText(m.getHomeScore());
 				 * gui.getAwayScore().setText(m.getAwayScore());
 				 */
+				view.getfield1().setText("car1speed");
+				view.getfield2.setText("car2speed");
+				view.getfield3.setText("car3speed");
+				view.getfield4.setText("light1status");
+				view.getfield5.setText("light2status");
+				view.getfield6.setText("light3status");
+				view.getfield7.setText("car1location");
+				view.getfield8.setText("car1location");
+				view.getfield9.setText("car3location");
+				view.getfield10.setText("time");
 			}
 		});
 	}
