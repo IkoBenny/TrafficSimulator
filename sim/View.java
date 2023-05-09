@@ -84,20 +84,22 @@ public class View {
 		lightsSlider.addChangeListener(listener);;
 	  }
 	
-		/*
-		 * //accessor method - returns selected button public JButton getButton(String
-		 * name) { switch(name) { case "possessionButton": return possessionButton; case
-		 * "stopButton": return stopButton; case "startButton": return startButton; case
-		 * "menuButton": return menu; case "zeroButton": return zero; case "oneButton":
-		 * return one; case "twoButton": return two; case "threeButton": return three;
-		 * case "fourButton": return four; case "fiveButton": return five; case
-		 * "sixButton": return six; case "sevenButton": return seven; case
-		 * "eightButton": return eight; case "nineButton": return nine; case
-		 * "powerButton": return powerButton; case "incrementButtonHome": return
-		 * incrementButtonHome; case "incrementButtonAway": return incrementButtonAway;
-		 * case "decrementButtonHome": return decrementButtonHome; case
-		 * "decrementButtonAway": return decrementButtonAway; } return null; }
-		 */
+		
+	//accessor method - returns selected button
+	public JButton getButton(String name) {
+		switch(name) {
+		case "start":
+			return start;
+		case "stop":
+			return stop;
+		case "pause":
+			return pause;
+		case "continueButton":
+			return continueButton;
+		}
+		return null;
+	}
+		 
 
 	
 	public static void main(String[] args) {

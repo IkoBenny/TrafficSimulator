@@ -3,6 +3,7 @@ package sim;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
@@ -14,31 +15,15 @@ public class Controller implements ActionListener, ChangeListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		/*
-		 * System.out.println("A button press is being responded to...");
-		 * if(e.getSource() == gui.getButton("incrementButtonHome"))
-		 * incrementHomeScore(); else if(e.getSource() == gui.getButton("stopButton"))
-		 * stopTime(); else if(e.getSource() == gui.getButton("possessionButton"))
-		 * togglePossessionArrow(); else if(e.getSource() ==
-		 * gui.getButton("startButton")) startTime(); else if(e.getSource() ==
-		 * gui.getButton("menuButton")) menu(); else if(e.getSource()==
-		 * gui.getButton("zeroButton")) ; else if(e.getSource()==
-		 * gui.getButton("oneButton")) ; else if(e.getSource()==
-		 * gui.getButton("twoButton")) ; else if(e.getSource()==
-		 * gui.getButton("threeButton")) ; else if(e.getSource()==
-		 * gui.getButton("fourButton")) ; else if(e.getSource()==
-		 * gui.getButton("fiveButton")) ; else if(e.getSource()==
-		 * gui.getButton("sixButton")) ; else if(e.getSource()==
-		 * gui.getButton("sevenButton")) ; else if(e.getSource()==
-		 * gui.getButton("eightButton")) ; else if(e.getSource()==
-		 * gui.getButton("nineButton")) ; else if(e.getSource()==
-		 * gui.getButton("powerButton")) togglePower(); else if(e.getSource()==
-		 * gui.getButton("incrementButtonAway")) incrementAwayScore(); else
-		 * if(e.getSource()== gui.getButton("decrementButtonHome"))
-		 * decrementHomeScore(); else if(e.getSource()==
-		 * gui.getButton("decrementButtonAway")) decrementAwayScore();
-		 */		
+		System.out.println("A button press is being responded to...");
+		if (e.getSource() == view.getButton("start"))
+			System.out.println("A start button was pressed...");	
+		else if (e.getSource() == view.getButton("stop"))
+			System.out.println("A stop button was pressed...");
+		else if (e.getSource() == view.getButton("continueButton"))
+			System.out.println("A continue button was pressed...");
+		else if (e.getSource() == view.getButton("pause"))
+			System.out.println("A pause button was pressed...");
 	}
 
 	@Override
@@ -55,6 +40,11 @@ public class Controller implements ActionListener, ChangeListener {
 
 	}
 
+	/*
+	 * // turn this scoreboard on/off public void togglePower() {
+	 * System.out.println("hitting power button..."); m.togglePower(); }
+	 */
+	
 	public void setViewAndModel(Model m, View v) {
 		model = m;
 		view = v;
