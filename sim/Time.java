@@ -10,14 +10,21 @@ public class Time extends TimerTask {
 		
 		@Override
 		public void run() {
+			timestamp();
 		}
 	
-		public String toString() {
+		public synchronized String toString() {
 			instant = Instant.now();
 			return instant.toString();
 		}
 		
-		public long timestamp() {
+		public synchronized long timestamp() {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return Instant.now().toEpochMilli();
 		}
 	}

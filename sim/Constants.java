@@ -10,6 +10,19 @@ public class Constants {
 
 	public enum TrafficLightColor {
 		RED, YELLOW, GREEN;
+		
+		public static String toString(TrafficLightColor tlc) {
+			switch (tlc) {
+			case RED:
+				return "Red";
+			case YELLOW:
+				return "Yellow";
+			case GREEN:
+				return "Green";
+			}
+			return null;
+		}
+	
 	}
 
 }

@@ -2,6 +2,8 @@ package sim;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -83,8 +85,47 @@ public class View {
 		car3SpeedSlider.addChangeListener(listener);
 		lightsSlider.addChangeListener(listener);;
 	  }
-	
 		
+	public JTextField getField1() {
+		return field1;
+	}
+
+	public JTextField getField2() {
+		return field2;
+	}
+
+	public JTextField getField3() {
+		return field3;
+	}
+
+	public JTextField getField4() {
+		return field4;
+	}
+
+	public JTextField getField5() {
+		return field5;
+	}
+
+	public JTextField getField6() {
+		return field6;
+	}
+
+	public JTextField getField7() {
+		return field7;
+	}
+
+	public JTextField getField8() {
+		return field8;
+	}
+
+	public JTextField getField9() {
+		return field9;
+	}
+
+	public JTextField getField10() {
+		return field10;
+	}
+
 	//accessor method - returns selected button
 	public JButton getButton(String name) {
 		switch(name) {
@@ -100,8 +141,6 @@ public class View {
 		return null;
 	}
 		 
-
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

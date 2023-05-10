@@ -69,6 +69,14 @@ public class Car extends TimerTask {
 		go();
 	}
 
+	public Point2D getPosition() {
+		return position;
+	}
+
+	public synchronized String getPositionAsString() {
+		return position.toString();
+	}
+	
 	/*
 	 * public static void main (String [] args) { Car c = new Car(new
 	 * Point2D.Double(0.0, 0.0), Constants.START_SPEED); c.run(); }
