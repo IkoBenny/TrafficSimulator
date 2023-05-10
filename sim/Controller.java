@@ -3,7 +3,6 @@ package sim;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
@@ -17,7 +16,7 @@ public class Controller implements ActionListener, ChangeListener {
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("A button press is being responded to...");
 		if (e.getSource() == view.getButton("start"))
-			System.out.println("A start button was pressed...");	
+			model.init();	
 		else if (e.getSource() == view.getButton("stop"))
 			System.out.println("A stop button was pressed...");
 		else if (e.getSource() == view.getButton("continueButton"))
@@ -36,14 +35,8 @@ public class Controller implements ActionListener, ChangeListener {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
-
-	/*
-	 * // turn this scoreboard on/off public void togglePower() {
-	 * System.out.println("hitting power button..."); m.togglePower(); }
-	 */
 	
 	public void setViewAndModel(Model m, View v) {
 		model = m;
@@ -51,21 +44,32 @@ public class Controller implements ActionListener, ChangeListener {
 	}
 
 	public void update() {
-		// TODO Auto-generated method stub
+
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				/*
-				 * gui.getHomeName().setText(m.getHomeName());
-				 * gui.getAwayName().setText(m.getAwayName());
-				 * gui.getQuarter().setText(m.getQuarter());
-				 * gui.getArrow().setText(m.getPossessionArrow());
-				 * gui.getHomeBonus().setSelected(m.getHomeBonus());
-				 * gui.getAwayBonus().setSelected(m.getAwayBonus());
-				 * gui.getHomeScore().setText(m.getHomeScore());
-				 * gui.getAwayScore().setText(m.getAwayScore());
-				 */
+				view.getField4().setText(model.getTrafficLightOneStatus());
+				view.getField5().setText(model.getTrafficLightTwoStatus());
+				view.getField6().setText(model.getTrafficLightThreeStatus());
+			}
+		});
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				view.getField1().setText(model.getCarOneSpeed());
+				view.getField2().setText(model.getCarTwoSpeed());
+				view.getField3().setText(model.getCarThreeSpeed());
+			}
+		});
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				view.getField7().setText(model.getCarOnePosition());
+				view.getField8().setText(model.getCarTwoPosition());
+				view.getField9().setText(model.getCarThreePosition());
+				view.getField10().setText(model.getTimestamp());
 			}
 		});
 	}
+	
 
 }
