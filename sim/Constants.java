@@ -24,5 +24,9 @@ public class Constants {
 		}
 	
 	}
+	
+	public enum SimulationMode {
+		PAUSE, START, STOP, CONTINUE;
+	}
 
 }

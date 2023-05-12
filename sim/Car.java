@@ -17,7 +17,7 @@ public class Car extends TimerTask {
 		lastStop = Instant.now();
 	}
 
-	public synchronized void go() {
+	public void go() {
 		if (isMoving)
 			return;
 
@@ -26,32 +26,33 @@ public class Car extends TimerTask {
 			lastStop = Instant.now();
 			currentSpeed = Constants.START_SPEED;
 			for (int i = 0; i < 100000; i++) {
-				updatePosition();
-				System.out.println("currentPosition: " + position);
 				try {
+					calculatePosition();
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println("currentPosition: " + position);
 			}
 		}
 	}
-
-	private synchronized void updatePosition() {
+	
+	public void calculatePosition() {
 		if (isMoving == false) {
 			return;
 		}
-
+		
 		if (isMoving) {
 			double now = Instant.now().toEpochMilli() / 1000.0; // milliseconds to seconds
 			double start = lastStop.toEpochMilli() / 1000.0; // milliseconds to seconds
 			double difference = now - start;
-			double distance = difference * currentSpeed;
+			double distance = difference * getCurrentSpeed();
 			position.setLocation(distance, 0);
 			System.out.println(toString() + " moving for: " + difference + " seconds..");
 		}
 	}
-
+	
 	public synchronized void stop() {
 		currentSpeed = Constants.STOP_SPEED;
 	}
@@ -70,15 +71,17 @@ public class Car extends TimerTask {
 	}
 
 	public Point2D getPosition() {
+		calculatePosition();
 		return position;
 	}
 
-	public synchronized String getPositionAsString() {
+	public String getPositionAsString() {
+		calculatePosition();
 		return position.toString();
 	}
 	
-	/*
-	 * public static void main (String [] args) { Car c = new Car(new
-	 * Point2D.Double(0.0, 0.0), Constants.START_SPEED); c.run(); }
-	 */
+	
+	  public static void main (String [] args) { Car c = new Car(new
+	  Point2D.Double(0.0, 0.0), Constants.START_SPEED); c.run(); }
+	 
 }

@@ -39,7 +39,6 @@ public class TrafficLight extends TimerTask {
 		switch (tlc) {
 		case RED:
 			tlc = Constants.TrafficLightColor.GREEN;
-			notifyAll();
 			break;
 		case YELLOW:
 			tlc = Constants.TrafficLightColor.RED;
@@ -47,10 +46,15 @@ public class TrafficLight extends TimerTask {
 		case GREEN:
 			tlc = Constants.TrafficLightColor.YELLOW;
 		}
-		notify();
 	}
 
 	synchronized Constants.TrafficLightColor getColor() {
+		try {
+			wait();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return tlc;
 	}
 
