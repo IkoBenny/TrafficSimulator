@@ -21,6 +21,37 @@ public class Main {
 		Model m = new Model(lightOne, lightTwo, lightThree, carOne, carTwo, carThree, clock);
 		View v = new View();
 		Controller c = new Controller();
+		
+		Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				System.out.println("Inside Thread...");
+				for (;;) {
+					try {
+						Thread.sleep(1000);
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								String time = m.getTimestamp();
+								v.getField10().setText(time);
+								v.getField10().repaint();
+								System.out.println("Text displayed...");
+							}
+						});
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});	 
+		
+		Thread thread2 = new Thread(new Runnable() {
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				System.out.println("Inside Thread2...");
+
+			}
+		});
 
 		// Schedule the GUI to be created on the event thread
 		SwingUtilities.invokeLater(new Runnable() {
@@ -39,9 +70,10 @@ public class Main {
 			case START:
 				System.out.println("START");
 				while (Model.mode == SimulationMode.START) {
-					c.startClock();
+					thread.start();
 					m.started();
 				}
+
 				break;
 			case PAUSE:
 				System.out.println("PAUSE");

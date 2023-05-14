@@ -8,9 +8,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeListener;
 
-public class View {
+public class View implements Runnable {
 	JFrame frame;
 	
 	JPanel containerPanel;
@@ -273,6 +274,11 @@ public class View {
 		frame.setVisible(true);
 		frame.add(containerPanel);
 		frame.setLayout(new GridLayout(2, 0));
+	}
+
+	@Override
+	public void run() {
+		SwingUtilities.invokeLater(()-> createAndShowGUI());	
 	}
 
 }

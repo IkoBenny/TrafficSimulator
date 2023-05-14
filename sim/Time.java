@@ -20,6 +20,7 @@ public class Time extends TimerTask {
 		}
 		
 		public String getTime() {
+			timestamp();
 			return time;
 		}
 

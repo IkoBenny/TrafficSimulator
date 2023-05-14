@@ -57,38 +57,35 @@ public class Controller extends TimerTask implements ActionListener, ChangeListe
 	}
 
 	public void startClock() {
-		Time t = new Time();
-		Scheduler s = new Scheduler();
-		Scheduler s2 = new Scheduler();
-		s2.schedule(this, 3000L, 1000L);
-		
-		Thread thread = new Thread(new Runnable() {
-			@Override
+		SwingUtilities.invokeLater(new Runnable() {
+			Time t = new Time();
 			public void run() {
-				// TODO Auto-generated method stub
-						System.out.println("Inside Thread...");
-						s.schedule(t, 1000L, 1000L);
-						
-						for (;;) {
-							try {
-								Thread.sleep(1000);
-								System.out.println("Before t.clockLock();...");
-								t.clockLock();
-								System.out.println("After t.clockLock();...");
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-	
-							System.out.println("After model.getTimestamp()...");
-						}
-						
+				t.timestamp();
 			}
+			});
+	
 		
-		}
-		);
+	
 		
-		thread.start();
+		/*
+		 * Thread thread = new Thread(new Runnable() {
+		 * 
+		 * @Override public void run() { // TODO Auto-generated method stub
+		 * System.out.println("Inside Thread..."); s.schedule(t, 1000L, 1000L);
+		 * 
+		 * for (;;) { try { Thread.sleep(1000);
+		 * System.out.println("Before t.clockLock();..."); t.clockLock();
+		 * System.out.println("After t.clockLock();..."); } catch (InterruptedException
+		 * e) { // TODO Auto-generated catch block e.printStackTrace(); }
+		 * 
+		 * System.out.println("After model.getTimestamp()..."); }
+		 * 
+		 * }
+		 * 
+		 * } );
+		 * 
+		 * thread.start();
+		 */
 		
 			SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
