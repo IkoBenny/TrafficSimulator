@@ -41,17 +41,51 @@ public class Main {
 						});
 						
 						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
-								
-								  TrafficLightColor col = m.lightThree.getColor(); 
+							public void run() {	
+								  TrafficLightColor col = m.lightOne.getColor(); 
+								  TrafficLightColor col2 = m.lightTwo.getColor();
+								  TrafficLightColor col3 = m.lightThree.getColor();
 								  String status = TrafficLightColor.toString(col); 
-								  v.getField5().setText(status);
+								  String status2 = TrafficLightColor.toString(col2); 
+								  String status3 = TrafficLightColor.toString(col3); 
+								  v.getField4().setText(status);
+								  v.getField5().setText(status2);
+								  v.getField6().setText(status3); 
 								  v.frame.repaint(); 
 								  System.out.println("Text run2 displayed...");
 								 
 							}
 						});
 						
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {	
+								  double pos = carOne.getCurrentSpeed();
+								  double pos2 = carTwo.getCurrentSpeed();
+								  double pos3 = carThree.getCurrentSpeed();
+								  String status = Double.toString(pos);
+								  String status2 = Double.toString(pos2);
+								  String status3 = Double.toString(pos3);
+								  v.getField1().setText(status);
+								  v.getField2().setText(status2);
+								  v.getField3().setText(status3); 
+								  v.frame.repaint(); 
+								  System.out.println("Text run3 displayed...");
+								 
+							}
+						});
+						
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {	
+								  String pos = carOne.getPositionAsString();
+								  String pos2 = carTwo.getPositionAsString();
+								  String pos3 = carThree.getPositionAsString();
+								  v.getField7().setText(pos);
+								  v.getField8().setText(pos2);
+								  v.getField9().setText(pos3); 
+								  v.frame.repaint(); 
+								  System.out.println("Text run4 displayed...");	 
+							}
+						});
 
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -79,7 +113,12 @@ public class Main {
 				System.out.println("START");
 				while (Model.mode == SimulationMode.START) {
 					thread.start();
+					lightOne.start();
+					lightTwo.start();
 					lightThree.start();
+					carOne.start();
+					carTwo.start();
+					carThree.start();
 					m.started();
 				}
 				break;

@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 import java.time.Instant;
 import java.util.TimerTask;
 
-public class Car extends TimerTask {
+public class Car extends Thread {
 	private double currentSpeed;
 	private Point2D position;
 	private Instant lastStop;
@@ -49,7 +49,7 @@ public class Car extends TimerTask {
 			System.out.println(toString() + " moving for: " + difference + " seconds..");
 	}
 	
-	public synchronized void stop() {
+	public synchronized void stopCar() {
 		currentSpeed = Constants.STOP_SPEED;
 	}
 
