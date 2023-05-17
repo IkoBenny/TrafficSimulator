@@ -128,6 +128,17 @@ public class Model {
 		// TODO Auto-generated method stub
 	}
 	
+	public void startCar(String carNo) {
+		switch(carNo) {
+		case "1":
+			carOne.go();
+		case "2":
+			carTwo.go();
+		case "3":
+			carThree.go();	
+		}
+	}
+	
 	public void init() {
 		lightOne.run();
 		lightTwo.run();

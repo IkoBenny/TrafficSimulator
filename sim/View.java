@@ -166,16 +166,16 @@ public class View implements Runnable {
 		// field1.setText(value.toString());
 
 		// Instantiate TextFields
-		field1 = new JTextField();
-		field2 = new JTextField();
-		field3 = new JTextField();
-		field4 = new JTextField();
-		field5 = new JTextField();
-		field6 = new JTextField();
-		field7 = new JTextField();
-		field8 = new JTextField();
-		field9 = new JTextField();
-		field10 = new JTextField();
+		field1 = new JTextField(20);
+		field2 = new JTextField(20);
+		field3 = new JTextField(20);
+		field4 = new JTextField(20);
+		field5 = new JTextField(20);
+		field6 = new JTextField(20);
+		field7 = new JTextField(20);
+		field8 = new JTextField(20);
+		field9 = new JTextField(20);
+		field10 = new JTextField(20);
 
 		// Instantiate Labels
 		car1 = new JLabel("Car #1:	 ");
@@ -270,7 +270,7 @@ public class View implements Runnable {
 		frame = new JFrame("Traffic Simulator");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
-		frame.setSize(500, 475);
+		frame.setSize(1600, 475);
 		frame.setVisible(true);
 		frame.add(containerPanel);
 		frame.setLayout(new GridLayout(2, 0));

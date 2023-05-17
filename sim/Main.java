@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.SwingUtilities;
 
 import sim.Constants.SimulationMode;
+import sim.Constants.TrafficLightColor;
 
 public class Main {
 
@@ -21,22 +22,37 @@ public class Main {
 		Model m = new Model(lightOne, lightTwo, lightThree, carOne, carTwo, carThree, clock);
 		View v = new View();
 		Controller c = new Controller();
-		
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() { // TODO Auto-generated method stub
 				System.out.println("Inside Thread...");
+				m.lightThree.lightswitch();
+				 //m.carThree.go(); 
 				for (;;) {
 					try {
 						Thread.sleep(1000);
 						SwingUtilities.invokeLater(new Runnable() {
 							public void run() {
 								String time = m.getTimestamp();
-								v.getField10().setText(time);
-								v.getField10().repaint();
-								System.out.println("Text displayed...");
+								v.getField10().setText(time);		 
+								v.frame.repaint();
+								System.out.println("Text run1 displayed...");
 							}
 						});
+						
+						SwingUtilities.invokeLater(new Runnable() {
+							public void run() {
+								
+								  TrafficLightColor col = m.lightThree.getColor(); 
+								  String status = TrafficLightColor.toString(col); 
+								  v.getField5().setText(status);
+								  v.frame.repaint(); 
+								  System.out.println("Text run2 displayed...");
+								 
+							}
+						});
+						
+
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -44,14 +60,6 @@ public class Main {
 				}
 			}
 		});	 
-		
-		Thread thread2 = new Thread(new Runnable() {
-			@Override
-			public void run() { // TODO Auto-generated method stub
-				System.out.println("Inside Thread2...");
-
-			}
-		});
 
 		// Schedule the GUI to be created on the event thread
 		SwingUtilities.invokeLater(new Runnable() {
@@ -71,9 +79,9 @@ public class Main {
 				System.out.println("START");
 				while (Model.mode == SimulationMode.START) {
 					thread.start();
+					lightThree.start();
 					m.started();
 				}
-
 				break;
 			case PAUSE:
 				System.out.println("PAUSE");

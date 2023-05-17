@@ -1,8 +1,7 @@
 package sim;
 
-import java.util.TimerTask;
 
-public class TrafficLight extends TimerTask {
+public class TrafficLight extends Thread {
 	Constants.TrafficLightColor tlc;
 	boolean on;
 
@@ -49,12 +48,6 @@ public class TrafficLight extends TimerTask {
 	}
 
 	synchronized Constants.TrafficLightColor getColor() {
-		try {
-			wait();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return tlc;
 	}
 
