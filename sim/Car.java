@@ -4,20 +4,22 @@ import java.awt.geom.Point2D;
 import java.time.Instant;
 import java.util.TimerTask;
 
-public class Car extends TimerTask {
+public class Car extends Thread {
 	private double currentSpeed;
 	private Point2D position;
 	private Instant lastStop;
 	private boolean isMoving;
+	private volatile boolean wait;
 	
 	public Car(Point2D.Double start, double speed) {
 		currentSpeed = speed;
 		position = start;
 		isMoving = false;
 		lastStop = Instant.now();
+		wait = true;
 	}
 
-	public synchronized void go() {
+	public void go() {
 		if (isMoving)
 			return;
 
@@ -26,41 +28,36 @@ public class Car extends TimerTask {
 			lastStop = Instant.now();
 			currentSpeed = Constants.START_SPEED;
 			for (int i = 0; i < 100000; i++) {
-				updatePosition();
-				System.out.println("currentPosition: " + position);
 				try {
+					calculatePosition();
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println("currentPosition: " + position);
 			}
 		}
 	}
-
-	private synchronized void updatePosition() {
-		if (isMoving == false) {
-			return;
-		}
-
-		if (isMoving) {
+	
+	public synchronized void calculatePosition() {
 			double now = Instant.now().toEpochMilli() / 1000.0; // milliseconds to seconds
 			double start = lastStop.toEpochMilli() / 1000.0; // milliseconds to seconds
 			double difference = now - start;
-			double distance = difference * currentSpeed;
+			double distance = difference * getCurrentSpeed();
 			position.setLocation(distance, 0);
 			System.out.println(toString() + " moving for: " + difference + " seconds..");
-		}
 	}
-
-	public synchronized void stop() {
+	
+	public synchronized void stopCar() {
 		currentSpeed = Constants.STOP_SPEED;
 	}
 
-	public synchronized double getCurrentSpeed() {
+	public double getCurrentSpeed() {
 		return currentSpeed;
 	}
 
-	public void setCurrentSpeed(double currentSpeed) {
+	public synchronized void setCurrentSpeed(double currentSpeed) {
 			this.currentSpeed = currentSpeed;
 	}
 
@@ -69,7 +66,7 @@ public class Car extends TimerTask {
 		go();
 	}
 
-	public Point2D getPosition() {
+	public synchronized Point2D getPosition() {
 		return position;
 	}
 
@@ -77,8 +74,14 @@ public class Car extends TimerTask {
 		return position.toString();
 	}
 	
-	/*
-	 * public static void main (String [] args) { Car c = new Car(new
-	 * Point2D.Double(0.0, 0.0), Constants.START_SPEED); c.run(); }
-	 */
+	
+	public synchronized void carLock() throws InterruptedException {
+		while(wait) {
+			wait();
+		}
+	}
+	
+	  public static void main (String [] args) { Car c = new Car(new
+	  Point2D.Double(0.0, 0.0), Constants.START_SPEED); c.run(); }
+	 
 }
