@@ -26,7 +26,18 @@ public class Constants {
 	}
 	
 	public enum SimulationMode {
-		PAUSE, START, STOP, CONTINUE;
+		PAUSE("pause"), START("start"), STOP("stop"), CONTINUE("continue");
+		
+		private String value;
+		
+		private SimulationMode(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
+		
 	}
 
 }
