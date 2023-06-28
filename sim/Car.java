@@ -16,23 +16,23 @@ public class Car extends Thread {
 	private static Logger log = LoggerFactory.getLogger(Car.class);
 	
 	public Car(Point2D.Double start, double speed) {
-		log.debug("Inside Car(start, speed)...");
+		log.trace("Inside Car(start, speed)...");
 		currentSpeed = speed;
 		position = start;
 		isMoving = false;
 		lastStop = Instant.now();
-		log.debug("Leaving Car(start, speed)...");
+		log.trace("Leaving Car(start, speed)...");
 //		wait = true;
 	}
 
 	public synchronized void calculatePosition() {
-		log.debug("Inside calculatePosition()...");
+		log.trace("Inside calculatePosition()...");
 		double now = Instant.now().toEpochMilli() / 1000.0; // milliseconds to seconds
 		double start = lastStop.toEpochMilli() / 1000.0; // milliseconds to seconds
 		double difference = now - start;
 		double distance = difference * getCurrentSpeed();
 		position.setLocation(distance, 0);
-		log.debug("leaving calculatePosition()...");
+		log.trace("leaving calculatePosition()...");
 		//System.out.println(toString() + " moving for: " + difference + " seconds..");
 	}
 	
@@ -42,24 +42,24 @@ public class Car extends Thread {
 	 */
 	
 	public double getCurrentSpeed() {
-		log.debug("Inside getCurrentSpeed()...");
+		log.trace("Inside getCurrentSpeed()...");
 		//log.info("Car distance: " + distance);
-		log.debug("Leaving getCurrentSpeed()...");
+		log.trace("Leaving getCurrentSpeed()...");
 		return currentSpeed;
 	}
 	
 	public synchronized String getPositionAsString() {
-		log.debug("Inside getPositionAsString()...");
+		log.trace("Inside getPositionAsString()...");
 		double x = position.getX();
 	    double y = position.getY();
-	    log.debug("Leaving getPositionAsString()...");
+	    log.trace("Leaving getPositionAsString()...");
 	    return "(" + x + "," + y + ")";
 	}
 	
 	public void go() {
-		log.debug("Inside go()...");
+		log.trace("Inside go()...");
 		if (isMoving) {
-			log.debug("Leaving go()...");
+			log.trace("Leaving go()...");
 			return;
 		}
 			
@@ -69,7 +69,7 @@ public class Car extends Thread {
 			currentSpeed = Constants.START_SPEED;
 			for (int i = 0; i < 100000; i++) {
 				try {
-					log.debug("Inside go() loop...");
+					log.trace("Inside go() loop...");
 					calculatePosition();
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -82,20 +82,20 @@ public class Car extends Thread {
 	
 	@Override
 	public void run() {
-		log.debug("Inside run()...");
+		log.trace("Inside run()...");
 		go();
 	}
 	
 	public synchronized void setCurrentSpeed(double currentSpeed) {
-		log.debug("Inside setCurrentSpeed()...");
+		log.trace("Inside setCurrentSpeed()...");
 		this.currentSpeed = currentSpeed;
-		log.debug("Leaving setCurrentSpeed()...");
+		log.trace("Leaving setCurrentSpeed()...");
 	}
 
 	public synchronized void stopCar() {
-		log.debug("Inside stopCar()...");
+		log.trace("Inside stopCar()...");
 		currentSpeed = Constants.STOP_SPEED;
-		log.debug("Leaving stopCar()...");
+		log.trace("Leaving stopCar()...");
 	}
 	 
 }
