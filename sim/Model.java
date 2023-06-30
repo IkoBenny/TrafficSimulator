@@ -1,30 +1,50 @@
 package sim;
 
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+
+import javax.swing.SwingUtilities;
+
+import lombok.Getter;
 import sim.Constants.SimulationMode;
 import sim.Constants.TrafficLightColor;
 
+@Getter
 public class Model {
-	TrafficLight lightOne;
-	TrafficLight lightTwo;
-	TrafficLight lightThree;
-	Car carOne;
-	Car carTwo;
-	Car carThree;
-	Time clock;
-	public static SimulationMode mode;
+	private Car carOne;
+	private Car carTwo;
+	private Car carThree;
+	private ArrayList<Car> cars = new ArrayList<>();
 	
-	public Model(TrafficLight lightOne, TrafficLight lightTwo, TrafficLight lightThree, Car carOne, Car carTwo,
-			Car carThree, Time clock) {
-		this.lightOne = lightOne;
-		this.lightTwo = lightTwo;
-		this.lightThree = lightThree;
-		this.carOne = carOne;
-		this.carTwo = carTwo;
-		this.carThree = carThree;
-		this.clock = clock;
+	private TrafficLight lightOne;
+	private TrafficLight lightTwo;
+	private TrafficLight lightThree;
+	private ArrayList<TrafficLight> lights = new ArrayList<>();
+
+	private Time clock;
+	private SimulationMode mode;
+	
+	public Model() {
+		this.lightOne = newLight();
+		this.lightTwo = newLight();
+		this.lightThree = newLight();
+		carOne = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED);
+		carTwo = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED);
+		carThree = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED);
+		clock = new Time();
 		mode = SimulationMode.STOP;
 	}
 
+	public TrafficLight newLight() {
+		if (lights.size() == 0) {
+			return new TrafficLight(new Point2D.Double(Constants.THOUSAND_METERS_IN_FEET, 0));
+		}
+		else {
+			Double position = lights.size() * Constants.THOUSAND_METERS_IN_FEET;
+			return new TrafficLight(new Point2D.Double(position, 0));
+		}		
+	}
+	
 	public synchronized void startMode () {
 		mode = SimulationMode.START;
 		notify();
@@ -150,4 +170,19 @@ public class Model {
 		return clock.getTime();
 	}
 
+	public TrafficLight getClosestLight(double position) {
+		if (position < Constants.THOUSAND_METERS_IN_FEET ) {
+			return lights.get(0);
+		}
+		else {
+			for (int i =1; i < lights.size(); i ++) {
+				if(lights.get(i).getPosition().getX()< position) {
+					return lights.get(i);
+				}
+			}
+			
+		}
+		return null;
+	}
+	
 }

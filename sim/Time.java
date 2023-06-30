@@ -15,41 +15,41 @@ public class Time extends TimerTask {
 		private static Logger log = LoggerFactory.getLogger(Time.class);
 		
 		public Time () {
-			log.trace("Inside Time()...");
+			log.info("Inside Time()...");
 			wait = true;
-			log.trace("Leaving Time()...");
+			log.info("Leaving Time()...");
 		}
 		
 		@Override
 		public void run() {
-			log.trace("Inside Time.run()...");
+			log.info("Inside Time.run()...");
 			timestamp();
-			log.trace("Leaving Time.run()...");
+			log.info("Leaving Time.run()...");
 		}
 		
 		public String getTime() {
-			log.trace("Inside Time.getTime()...");
+			log.info("Inside Time.getTime()...");
 			timestamp();
-			log.trace("Leaving Time.getTime()...");
+			log.info("Leaving Time.getTime()...");
 			return time;
 		}
 
 		public synchronized void timestamp() {
-			log.trace("Inside Time.timestamp()...");
+			log.info("Inside Time.timestamp(){}...", time);
 			time =  LocalTime.now().toString();
 			notify();
 			wait = false;
-			log.trace("Leaving Time.timestamp()...");
+			log.info("Leaving Time.timestamp()...", time);
 		}
 		
 		public synchronized void clockLock() throws InterruptedException {
-			log.trace("Inside Time.clockLock()...");
+			log.info("Inside Time.clockLock()...");
 			while(wait) {
-				log.trace("Inside Time.clockLock() while loop...");
+				log.info("Inside Time.clockLock() while loop...");
 				wait();
 			}
-			log.trace("Leaving Time.clockLock() while loop...");
-			log.trace("Leaving Time.clockLock()...");
+			log.info("Leaving Time.clockLock() while loop...");
+			log.info("Leaving Time.clockLock()...");
 		}
 		
 	}

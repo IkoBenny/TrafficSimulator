@@ -1,99 +1,20 @@
 package sim;
 
-import java.awt.geom.Point2D;
+
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.SwingUtilities;
 
 import sim.Constants.SimulationMode;
-import sim.Constants.TrafficLightColor;
 
 public class Main {
 
 	public static void main(String[] args) throws InterruptedException, InvocationTargetException {
-		TrafficLight lightOne = new TrafficLight();
-		TrafficLight lightTwo = new TrafficLight();
-		TrafficLight lightThree = new TrafficLight();
-		Car carOne = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED);
-		Car carTwo = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED);
-		Car carThree = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED);
-		Time clock = new Time();
 		// create the Model, View and Controller
-		Model m = new Model(lightOne, lightTwo, lightThree, carOne, carTwo, carThree, clock);
+		Model m = new Model();
 		View v = new View();
 		Controller c = new Controller();
-		Thread thread = new Thread(new Runnable() {
-			@Override
-			public void run() { // TODO Auto-generated method stub
-				System.out.println("Inside Thread...");
-				m.lightThree.lightswitch();
-				 //m.carThree.go(); 
-				for (;;) {
-					try {
-						Thread.sleep(1000);
-						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
-								String time = m.getTimestamp();
-								v.getField10().setText(time);		 
-								v.frame.repaint();
-								System.out.println("Text run1 displayed...");
-							}
-						});
-						
-						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {	
-								  TrafficLightColor col = m.lightOne.getColor(); 
-								  TrafficLightColor col2 = m.lightTwo.getColor();
-								  TrafficLightColor col3 = m.lightThree.getColor();
-								  String status = TrafficLightColor.toString(col); 
-								  String status2 = TrafficLightColor.toString(col2); 
-								  String status3 = TrafficLightColor.toString(col3); 
-								  v.getField4().setText(status);
-								  v.getField5().setText(status2);
-								  v.getField6().setText(status3); 
-								  v.frame.repaint(); 
-								  System.out.println("Text run2 displayed...");
-								 
-							}
-						});
-						
-						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {	
-								  double pos = carOne.getCurrentSpeed();
-								  double pos2 = carTwo.getCurrentSpeed();
-								  double pos3 = carThree.getCurrentSpeed();
-								  String status = Double.toString(pos);
-								  String status2 = Double.toString(pos2);
-								  String status3 = Double.toString(pos3);
-								  v.getField1().setText(status);
-								  v.getField2().setText(status2);
-								  v.getField3().setText(status3); 
-								  v.frame.repaint(); 
-								  System.out.println("Text run3 displayed...");
-								 
-							}
-						});
-						
-						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {	
-								  String pos = carOne.getPositionAsString();
-								  String pos2 = carTwo.getPositionAsString();
-								  String pos3 = carThree.getPositionAsString();
-								  v.getField7().setText(pos);
-								  v.getField8().setText(pos2);
-								  v.getField9().setText(pos3); 
-								  v.frame.repaint(); 
-								  System.out.println("Text run4 displayed...");	 
-							}
-						});
 
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		});	 
 
 		// Schedule the GUI to be created on the event thread
 		SwingUtilities.invokeLater(new Runnable() {
@@ -108,35 +29,35 @@ public class Main {
 
 		for (;;) {
 
-			switch (Model.mode) {
+			switch (m.getMode()) {
 			case START:
 				System.out.println("START");
-				while (Model.mode == SimulationMode.START) {
-					thread.start();
-					lightOne.start();
-					lightTwo.start();
-					lightThree.start();
-					carOne.start();
-					carTwo.start();
-					carThree.start();
+				while (m.getMode() == SimulationMode.START) {
+					c.getStartThread().start();
+					c.getModel().getLightOne().start();
+					c.getModel().getLightTwo().start();
+					c.getModel().getLightThree().start();
+					c.getModel().getCarOne().start();
+					c.getModel().getCarTwo().start();
+					c.getModel().getCarThree().start();
 					m.started();
 				}
 				break;
 			case PAUSE:
 				System.out.println("PAUSE");
-				while (Model.mode == SimulationMode.PAUSE) {
+				while (m.getMode() == SimulationMode.PAUSE) {
 					m.paused();
 				}
 				break;
 			case CONTINUE:
 				System.out.println("CONTINUE");
-				while (Model.mode == SimulationMode.CONTINUE) {
+				while (m.getMode() == SimulationMode.CONTINUE) {
 					m.restarted();
 				}
 				break;
 			case STOP:
 				System.out.println("STOP");
-				while (Model.mode == SimulationMode.STOP) {
+				while (m.getMode() == SimulationMode.STOP) {
 					m.stopped();
 				}
 				break;
