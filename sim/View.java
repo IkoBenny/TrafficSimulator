@@ -11,6 +11,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeListener;
 
+import lombok.Data;
+import lombok.Getter;
+
+@Data
+@Getter
 public class View implements Runnable {
 	JFrame frame;
 	
@@ -84,46 +89,6 @@ public class View implements Runnable {
 		car3SpeedSlider.addChangeListener(listener);
 		lightsSlider.addChangeListener(listener);;
 	  }
-		
-	public JTextField getField1() {
-		return field1;
-	}
-
-	public JTextField getField2() {
-		return field2;
-	}
-
-	public JTextField getField3() {
-		return field3;
-	}
-
-	public JTextField getField4() {
-		return field4;
-	}
-
-	public JTextField getField5() {
-		return field5;
-	}
-
-	public JTextField getField6() {
-		return field6;
-	}
-
-	public JTextField getField7() {
-		return field7;
-	}
-
-	public JTextField getField8() {
-		return field8;
-	}
-
-	public JTextField getField9() {
-		return field9;
-	}
-
-	public JTextField getField10() {
-		return field10;
-	}
 
 	//accessor method - returns selected button
 	public JButton getButton(String name) {
