@@ -7,7 +7,7 @@ public class TrafficLight extends Thread {
 	Constants.TrafficLightColor tlc;
 	boolean on;
 	
-	private static Logger log = LoggerFactory.getLogger(Car.class);
+	private static Logger log = LoggerFactory.getLogger(TrafficLight.class);
 
 	public TrafficLight() {
 		log.trace("Inside TrafficLight()...");

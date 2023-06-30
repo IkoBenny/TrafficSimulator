@@ -12,7 +12,6 @@ public class Car extends Thread {
 	private Instant lastStop;
 	private boolean isMoving;
 //	private volatile boolean wait;
-	
 	private static Logger log = LoggerFactory.getLogger(Car.class);
 	
 	public Car(Point2D.Double start, double speed) {
