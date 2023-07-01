@@ -1,18 +1,26 @@
 package sim;
 
+import java.awt.geom.Point2D;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import lombok.Getter;
+
+@Getter
 public class TrafficLight extends Thread {
 	Constants.TrafficLightColor tlc;
 	boolean on;
+	private Point2D position;
 	
 	private static Logger log = LoggerFactory.getLogger(TrafficLight.class);
 
-	public TrafficLight() {
+	public TrafficLight(Point2D position) {
 		log.trace("Inside TrafficLight()...");
 		tlc = Constants.TrafficLightColor.RED;
 		log.trace("Leaving TrafficLight()...");
+		this.position = position;  
+		log.info("position tl: {}", position);
 	}
 
 	@Override
@@ -25,7 +33,7 @@ public class TrafficLight extends Thread {
 				switch (tlc) {
 				case GREEN:
 					System.out.println("GREEN");
-					Thread.sleep(10000); // green for 10 seconds
+					Thread.sleep(5000); // green for 5 seconds
 					break;
 				case YELLOW:
 					System.out.println("YELLOW");
@@ -70,12 +78,6 @@ public class TrafficLight extends Thread {
 		log.trace("Leaving TrafficLight.lightswitch()...");
 		on = !on;
 	}
-
-	/*
-	 * public static void main(String[] args) { TrafficLight tl = new
-	 * TrafficLight(); tl.run(); }
-	 */
-
 }
   
 

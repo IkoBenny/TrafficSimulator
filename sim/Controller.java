@@ -8,33 +8,70 @@ import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.ChangeListener;
 
+import lombok.Getter;
+
 /*import javax.swing.JSlider;
 import javax.swing.SwingUtilities;*/
 
+@Getter
 public class Controller implements ActionListener, ChangeListener {
 	View view;
-	Model model;
+	private Model model;
 	
-	Thread startSimulationThread = new Thread(new Runnable() {
+	Thread startThread = new Thread(new Runnable() {
 		@Override
-		public void run() {
-			// TODO Auto-generated method stub
+		public void run() { // TODO Auto-generated method stub
+			System.out.println("Inside Thread...");
+			//mlightThree.lightswitch();
+			 //m.carThree.go(); 
 			for (;;) {
 				try {
 					Thread.sleep(1000);
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {	
-							view.getField10().setText(model.getTimestamp());
-							System.out.println("Inside Thread..." + model.getTimestamp());
+						public void run() {
+							view.getField10().setText(model.getTimestamp());		 
+							view.frame.repaint();
+							System.out.println("Text run1 displayed...");
 						}
 					});
+					
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {	
+							  view.getField4().setText(model.getTrafficLightOneStatus());
+							  view.getField5().setText(model.getTrafficLightTwoStatus());
+							  view.getField6().setText(model.getTrafficLightThreeStatus()); 
+							  view.frame.repaint(); 
+							  System.out.println("Text run2 displayed...");
+						}
+					});
+					
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {	
+							  view.getField1().setText(model.getCarOneSpeed());
+							  view.getField2().setText(model.getCarTwoSpeed());
+							  view.getField3().setText(model.getCarTwoSpeed()); 
+							  view.frame.repaint(); 
+							  System.out.println("Text run3 displayed..."); 
+						}
+					});
+					
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							  view.getField7().setText(model.getCarOnePosition());
+							  view.getField8().setText(model.getCarTwoPosition());
+							  view.getField9().setText(model.getCarThreePosition()); 
+							  view.frame.repaint(); 
+							  System.out.println("Text run4 displayed...");	 
+						}
+					});
+
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
-	});
+	});	 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -72,7 +109,7 @@ public class Controller implements ActionListener, ChangeListener {
 	
 	public void startSimulation() {
 		model.init();
-		startSimulationThread.run();
+		startThread.run();
 	}
 	
 	@Override

@@ -1,30 +1,74 @@
 package sim;
 
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+
+import lombok.Getter;
 import sim.Constants.SimulationMode;
 import sim.Constants.TrafficLightColor;
 
+@Getter
 public class Model {
-	TrafficLight lightOne;
-	TrafficLight lightTwo;
-	TrafficLight lightThree;
-	Car carOne;
-	Car carTwo;
-	Car carThree;
-	Time clock;
-	public static SimulationMode mode;
+	private Car carOne;
+	private Car carTwo;
+	private Car carThree;
+	private ArrayList<Car> cars = new ArrayList<>();
 	
-	public Model(TrafficLight lightOne, TrafficLight lightTwo, TrafficLight lightThree, Car carOne, Car carTwo,
-			Car carThree, Time clock) {
-		this.lightOne = lightOne;
-		this.lightTwo = lightTwo;
-		this.lightThree = lightThree;
-		this.carOne = carOne;
-		this.carTwo = carTwo;
-		this.carThree = carThree;
-		this.clock = clock;
+	private TrafficLight lightOne;
+	private TrafficLight lightTwo;
+	private TrafficLight lightThree;
+	private ArrayList<TrafficLight> lights = new ArrayList<>();
+
+	private Time clock;
+	private SimulationMode mode;
+	
+	public Model() {
+		initLights();
+		initCars();
+		clock = new Time();
 		mode = SimulationMode.STOP;
 	}
 
+	public TrafficLight newLight() {
+		if (lights.size() == 0) {
+			return new TrafficLight(new Point2D.Double(Constants.THOUSAND_METERS_IN_FEET, 0));
+		}
+		else {
+			Double position = (lights.size() + 1) * Constants.THOUSAND_METERS_IN_FEET;
+			return new TrafficLight(new Point2D.Double(position, 0));
+		}		
+	}
+	
+	private void initLights() {
+		this.lightOne = newLight();
+		addLight(lightOne);
+		this.lightTwo = newLight();
+		addLight(lightTwo);
+		this.lightThree = newLight();
+		addLight(lightThree);
+	}
+	
+	private void initCars() {
+		carOne = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED, lights);
+		addCar(carOne);
+		carTwo = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED, lights);
+		addCar(carTwo);
+		carThree = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED, lights);
+		addCar(carThree);
+	}
+	
+	public Car newCar() {
+		return new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED, lights);
+	}
+	
+	public void addCar(Car c) {
+		cars.add(c);
+	}
+	
+	public void addLight(TrafficLight l) {
+		lights.add(l);
+	}
+	
 	public synchronized void startMode () {
 		mode = SimulationMode.START;
 		notify();
@@ -124,10 +168,6 @@ public class Model {
 		return carThree.getPositionAsString();
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	}
-	
 	public void startCar(String carNo) {
 		switch(carNo) {
 		case "1":
@@ -149,5 +189,5 @@ public class Model {
 	public String getTimestamp() {
 		return clock.getTime();
 	}
-
+	
 }
