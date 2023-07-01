@@ -92,6 +92,15 @@ public class Car extends Thread {
 			calculatePosition();
 			findNearestLight();
 			stopIfRed();
+			while (closest.getColor().equals(Constants.TrafficLightColor.RED)) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			isMoving = true;
+			currentSpeed = Constants.START_SPEED;
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -101,14 +110,14 @@ public class Car extends Thread {
 		log.info("Leaving go()...");
 	}
 	
-	  private synchronized void stopIfRed() { 
-		  log.info("Inside stopIfRed()...");
-		  if(closest.getColor().equals(Constants.TrafficLightColor.RED)) { 
-			  log.info("Inside stopIfRed() if...");  
-			  stopCar(); 
-			  } 
-		  log.info("Leaving stopIfRed()...");
-	  }
+	private synchronized void stopIfRed() {
+		log.info("Inside stopIfRed()...");
+		if (closest.getColor().equals(Constants.TrafficLightColor.RED)) {
+			log.info("Inside stopIfRed() if...");
+			stopCar();
+		}
+		log.info("Leaving stopIfRed()...");
+	}
 	
 	  private synchronized void findNearestLight() {
 		  log.info("Inside findNearestLight()...");
