@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Car extends Thread {
+public class Car extends Thread implements Cloneable {
 	private double currentSpeed;
 	private Point2D position;
 	private Instant lastStop;
@@ -142,6 +142,15 @@ public class Car extends Thread {
 		currentSpeed = Constants.STOP_SPEED;
 		isMoving = false;
 		log.info("Leaving stopCar()...");
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		Car c = (Car)super.clone();
+		c.position = new Point2D.Double();
+		c.lastStop = this.lastStop;
+		c.lights = new ArrayList<>();
+		c.closest = new TrafficLight(closest.getPosition());
+		return c; 
 	}
 
 }

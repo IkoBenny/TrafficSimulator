@@ -10,9 +10,6 @@ import javax.swing.event.ChangeListener;
 
 import lombok.Getter;
 
-/*import javax.swing.JSlider;
-import javax.swing.SwingUtilities;*/
-
 @Getter
 public class Controller implements ActionListener, ChangeListener {
 	View view;
@@ -20,17 +17,18 @@ public class Controller implements ActionListener, ChangeListener {
 	
 	Thread startThread = new Thread(new Runnable() {
 		@Override
-		public void run() { // TODO Auto-generated method stub
+		public void run() {
 			System.out.println("Inside Thread...");
-			//mlightThree.lightswitch();
-			 //m.carThree.go(); 
 			for (;;) {
 				try {
 					Thread.sleep(1000);
 					SwingUtilities.invokeLater(new Runnable() {
 						public void run() {
-							view.getField10().setText(model.getTimestamp());		 
-							view.frame.repaint();
+							if (model.getMode().equals(Constants.SimulationMode.STOP) == false && 
+									model.getMode().equals(Constants.SimulationMode.PAUSE) == false	) {
+								view.getField10().setText(model.getTimestamp());		 
+								view.frame.repaint();
+							}
 							System.out.println("Text run1 displayed...");
 						}
 					});
@@ -66,7 +64,6 @@ public class Controller implements ActionListener, ChangeListener {
 					});
 
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -105,11 +102,6 @@ public class Controller implements ActionListener, ChangeListener {
 	public void setViewAndModel(Model model, View view) {
 		this.model = model;
 		this.view = view;
-	}
-	
-	public void startSimulation() {
-		model.init();
-		startThread.run();
 	}
 	
 	@Override

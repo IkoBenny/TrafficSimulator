@@ -26,7 +26,7 @@ public class Model {
 		initLights();
 		initCars();
 		clock = new Time();
-		mode = SimulationMode.STOP;
+		mode = SimulationMode.INIT;
 	}
 
 	public TrafficLight newLight() {
@@ -179,13 +179,6 @@ public class Model {
 		}
 	}
 	
-	public void init() {
-		lightOne.run();
-		lightTwo.run();
-		lightThree.run();
-		clock.run();
-	}
-
 	public String getTimestamp() {
 		return clock.getTime();
 	}
