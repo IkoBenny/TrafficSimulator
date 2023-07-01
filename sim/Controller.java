@@ -9,36 +9,14 @@ import java.awt.event.ActionListener;
 import javax.swing.event.ChangeListener;
 
 import lombok.Getter;
-import sim.Constants.TrafficLightColor;
 
 /*import javax.swing.JSlider;
 import javax.swing.SwingUtilities;*/
 
 @Getter
 public class Controller implements ActionListener, ChangeListener {
-	private View view;
+	View view;
 	private Model model;
-	
-	Thread startSimulationThread = new Thread(new Runnable() {
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-			for (;;) {
-				try {
-					Thread.sleep(1000);
-					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {	
-							view.getField10().setText(model.getTimestamp());
-							System.out.println("Inside Thread..." + model.getTimestamp());
-						}
-					});
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-	});
 	
 	Thread startThread = new Thread(new Runnable() {
 		@Override
@@ -51,8 +29,7 @@ public class Controller implements ActionListener, ChangeListener {
 					Thread.sleep(1000);
 					SwingUtilities.invokeLater(new Runnable() {
 						public void run() {
-							String time = model.getTimestamp();
-							view.getField10().setText(time);		 
+							view.getField10().setText(model.getTimestamp());		 
 							view.frame.repaint();
 							System.out.println("Text run1 displayed...");
 						}
@@ -60,46 +37,29 @@ public class Controller implements ActionListener, ChangeListener {
 					
 					SwingUtilities.invokeLater(new Runnable() {
 						public void run() {	
-							  TrafficLightColor col = model.getLightOne().getColor(); 
-							  TrafficLightColor col2 = model.getLightTwo().getColor();
-							  TrafficLightColor col3 = model.getLightThree().getColor();
-							  String status = TrafficLightColor.toString(col); 
-							  String status2 = TrafficLightColor.toString(col2); 
-							  String status3 = TrafficLightColor.toString(col3); 
-							  view.getField4().setText(status);
-							  view.getField5().setText(status2);
-							  view.getField6().setText(status3); 
+							  view.getField4().setText(model.getTrafficLightOneStatus());
+							  view.getField5().setText(model.getTrafficLightTwoStatus());
+							  view.getField6().setText(model.getTrafficLightThreeStatus()); 
 							  view.frame.repaint(); 
 							  System.out.println("Text run2 displayed...");
-							 
 						}
 					});
 					
 					SwingUtilities.invokeLater(new Runnable() {
 						public void run() {	
-							  double pos = model.getCarOne().getCurrentSpeed();
-							  double pos2 = model.getCarTwo().getCurrentSpeed();
-							  double pos3 = model.getCarThree().getCurrentSpeed();
-							  String status = Double.toString(pos);
-							  String status2 = Double.toString(pos2);
-							  String status3 = Double.toString(pos3);
-							  view.getField1().setText(status);
-							  view.getField2().setText(status2);
-							  view.getField3().setText(status3); 
+							  view.getField1().setText(model.getCarOneSpeed());
+							  view.getField2().setText(model.getCarTwoSpeed());
+							  view.getField3().setText(model.getCarTwoSpeed()); 
 							  view.frame.repaint(); 
-							  System.out.println("Text run3 displayed...");
-							 
+							  System.out.println("Text run3 displayed..."); 
 						}
 					});
 					
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {	
-							  String pos = model.getCarOnePosition();
-							  String pos2 = model.getCarTwoPosition();
-							  String pos3 = model.getCarThreePosition();
-							  view.getField7().setText(pos);
-							  view.getField8().setText(pos2);
-							  view.getField9().setText(pos3); 
+						public void run() {
+							  view.getField7().setText(model.getCarOnePosition());
+							  view.getField8().setText(model.getCarTwoPosition());
+							  view.getField9().setText(model.getCarThreePosition()); 
 							  view.frame.repaint(); 
 							  System.out.println("Text run4 displayed...");	 
 						}
@@ -149,7 +109,7 @@ public class Controller implements ActionListener, ChangeListener {
 	
 	public void startSimulation() {
 		model.init();
-		startSimulationThread.run();
+		startThread.run();
 	}
 	
 	@Override

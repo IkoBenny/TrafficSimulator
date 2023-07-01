@@ -20,6 +20,7 @@ public class TrafficLight extends Thread {
 		tlc = Constants.TrafficLightColor.RED;
 		log.trace("Leaving TrafficLight()...");
 		this.position = position;  
+		log.info("position tl: {}", position);
 	}
 
 	@Override

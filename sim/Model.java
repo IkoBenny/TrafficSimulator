@@ -3,8 +3,6 @@ package sim;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-import javax.swing.SwingUtilities;
-
 import lombok.Getter;
 import sim.Constants.SimulationMode;
 import sim.Constants.TrafficLightColor;
@@ -25,12 +23,8 @@ public class Model {
 	private SimulationMode mode;
 	
 	public Model() {
-		this.lightOne = newLight();
-		this.lightTwo = newLight();
-		this.lightThree = newLight();
-		carOne = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED);
-		carTwo = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED);
-		carThree = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED);
+		initLights();
+		initCars();
 		clock = new Time();
 		mode = SimulationMode.STOP;
 	}
@@ -40,9 +34,39 @@ public class Model {
 			return new TrafficLight(new Point2D.Double(Constants.THOUSAND_METERS_IN_FEET, 0));
 		}
 		else {
-			Double position = lights.size() * Constants.THOUSAND_METERS_IN_FEET;
+			Double position = (lights.size() + 1) * Constants.THOUSAND_METERS_IN_FEET;
 			return new TrafficLight(new Point2D.Double(position, 0));
 		}		
+	}
+	
+	private void initLights() {
+		this.lightOne = newLight();
+		addLight(lightOne);
+		this.lightTwo = newLight();
+		addLight(lightTwo);
+		this.lightThree = newLight();
+		addLight(lightThree);
+	}
+	
+	private void initCars() {
+		carOne = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED, lights);
+		addCar(carOne);
+		carTwo = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED, lights);
+		addCar(carTwo);
+		carThree = new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED, lights);
+		addCar(carThree);
+	}
+	
+	public Car newCar() {
+		return new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED, lights);
+	}
+	
+	public void addCar(Car c) {
+		cars.add(c);
+	}
+	
+	public void addLight(TrafficLight l) {
+		lights.add(l);
 	}
 	
 	public synchronized void startMode () {
@@ -144,10 +168,6 @@ public class Model {
 		return carThree.getPositionAsString();
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	}
-	
 	public void startCar(String carNo) {
 		switch(carNo) {
 		case "1":
@@ -168,21 +188,6 @@ public class Model {
 
 	public String getTimestamp() {
 		return clock.getTime();
-	}
-
-	public TrafficLight getClosestLight(double position) {
-		if (position < Constants.THOUSAND_METERS_IN_FEET ) {
-			return lights.get(0);
-		}
-		else {
-			for (int i =1; i < lights.size(); i ++) {
-				if(lights.get(i).getPosition().getX()< position) {
-					return lights.get(i);
-				}
-			}
-			
-		}
-		return null;
 	}
 	
 }
