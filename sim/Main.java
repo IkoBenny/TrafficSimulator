@@ -15,7 +15,6 @@ public class Main {
 		View v = new View();
 		Controller c = new Controller();
 
-
 		// Schedule the GUI to be created on the event thread
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -58,16 +57,18 @@ public class Main {
 			case STOP:
 				System.out.println("STOP");
 				while (m.getMode() == SimulationMode.STOP) {
+					c.getModel().getCarOne().stopCar();
+					c.getModel().getCarTwo().stopCar();
+					c.getModel().getCarThree().stopCar();
+					c.getModel().getLightOne().lightswitch();
+					c.getModel().getLightTwo().lightswitch();
+					c.getModel().getLightThree().lightswitch();
 					m.stopped();
 				}
+				break;
+			default:
 				break;
 			}
 		}
 	}
-		
-
-		//Use Strategy pattern depending on button selected
-		
-
-
 }

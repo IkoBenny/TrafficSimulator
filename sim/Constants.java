@@ -29,7 +29,7 @@ public class Constants {
 	}
 	
 	public enum SimulationMode {
-		PAUSE("pause"), START("start"), STOP("stop"), CONTINUE("continue");
+		PAUSE("pause"), START("start"), STOP("stop"), INIT("init"), CONTINUE("continue");
 		
 		private String value;
 		
