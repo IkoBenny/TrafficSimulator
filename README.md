@@ -1,10 +1,11 @@
 # TrafficSimulator
 
-# Project Background
-
+<details>
+<summary># Project Background</summary>
 The Capstone Project for Computer Science at UMGC. A concurrent Java program written using Threads, Listeners, and Event Handlers. 
 TrafficLightDescription.PDF is where interested parties may find original assignment details. 
 The original project was assigned in 2020, but was never completed. This project was revisited for educational purposes.
+</details>
 
 # Concepts Explored 
 This section provides a list of concepts encountered in order to complete analysis, design and implementation. Furthermore, this section serves as a point of reference for future studies.
