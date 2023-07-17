@@ -1,41 +1,49 @@
 # TrafficSimulator
 
 <details>
-<summary># Project Background</summary>
-The Capstone Project for Computer Science at UMGC. A concurrent Java program written using Threads, Listeners, and Event Handlers. 
+<summary>Project Background</summary>
+The Capstone Project for Computer Science at UMGC. A concurrent Java program written using Threads, Listeners, and Event Handlers. Originally assigned in 2020, but never fully completed. This project is a complete rewrite, for educational purposes.  
 TrafficLightDescription.PDF is where interested parties may find original assignment details. 
-The original project was assigned in 2020, but was never completed. This project was revisited for educational purposes.
 </details>
 
-# Concepts Explored 
-This section provides a list of concepts encountered in order to complete analysis, design and implementation. Furthermore, this section serves as a point of reference for future studies.
+<details>
+<summary>Project Status</summary>
+This project is currently in development. At this moment, there is no completion date. 
+</details>
 
-Multi Threaded Processing
-Real Time Processing
-Concurrent Processing
-RTSJ (Real Time Specification for Java, classes, excpetions, expectations, etc.)
-Git - Fork, Commit, Push, Pull, Cherry Pick, .GitIgnore, Stable branches, Feature and Release branches
-EPOCH time
-Monotask (single task, easy to define, wait for stimulus, then act) vs.
-Multitask Architectures (each task performed by different thread, resources protected by critical sections)
-Monolothic (single machine, sytstem, and language) vs. 
-Distributed Applications 
-(each unit is on different machine, 
-each unit can execute on different system,
-each program may be in a different languauge)
-Event Handling 
-(The three approaches for performing event handling are by 
-placing the event handling code in one of the below-specified places.)
--Within Class,
--Other Class,
--Anonymous Class.
-MVC Model-View-Controller
-Singleton Pattern
-Strategy Pattern
-Enumeration
-Object Serialization/Deserialization 
+<details>
+<summary>Planned Changes</summary>
+There are numerous changes to be made. There is no priority for completion of features.
 
-# Code Review 
+  - Add Real Time Heads-up Display, using Graphics.
+  - Support for additional cars/traffic lights.
+</details>
+
+<details>
+<summary>Concepts Explored</summary>
+  * Concurrent Processing
+  * Distributed Applications (each unit is on different machine, each unit can execute on different system, each program may be in a different languauge)
+  * Enumeration
+  * EPOCH time
+  * Event Handling (The three approaches for performing event handling are by placing the event handling code in one of the below-specified places.)
+  - Anonymous Class.
+  - Another Class
+  - Within Class
+  * Git - Fork, Commit, Push, Pull, Cherry Pick, .GitIgnore, Stable branches, Feature and Release branches
+  * Monolothic (single machine, sytstem, and language)
+  * Monotask (single task, easy to define, wait for stimulus, then act) 
+  * Multitask Architectures (each task performed by different thread, resources protected by critical sections)
+  * Multi Threaded Processing
+  * MVC Model-View-Controller
+  * Object Serialization/Deserialization 
+  * Real Time Processing
+  * RTSJ (Real Time Specification for Java, classes, excpetions, expectations, etc.) 
+  * Singleton Pattern
+  * Strategy Pattern
+</details>
+
+<details>
+<summary>Code Review</summary>
 This section is an honest evaluation of my previously submitted coursework. This is where I take a look at my previous approach, and 
 try to explain shortcomings, fix issues, demonstrate learning, etc. 
 
@@ -50,11 +58,12 @@ placed the event handling code within the class. I could have possibly implented
 The latter would have been the appropiate choice, given the project requirements.
 
 5. I was unable to complete the project in the alloted time due to many factors:
-  Lack of technical skill
-  proper planning
-  attention to detail,  etc.
+   -  Lack of technical skill
+   -  Proper planning
+   -  Attention to detail,  etc.
 
 Do I think I was technically able to complete the project back then? Yes. I spent a considerable amount of time learning about Threads. However, I glossed over directions and missed where it was recommended to focus on learning before starting to write code. Furthermore, resources were wasted on features that could have been addressed at a later time. This resulted in scope creep, and ultimately ended in project failure. I was unable to deliver a fully functional, tested version of the program before the milestone date of the deliverable.  
+</details>
 
 
 
