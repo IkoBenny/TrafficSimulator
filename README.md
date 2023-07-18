@@ -21,6 +21,7 @@ There are numerous changes to be made. There is no priority for completion of fe
 
 <details>
 <summary>Concepts Explored</summary>
+  
   - Concurrent Processing
   - Distributed Applications
   - Enumeration
