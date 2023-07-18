@@ -21,25 +21,25 @@ There are numerous changes to be made. There is no priority for completion of fe
 
 <details>
 <summary>Concepts Explored</summary>
-  - Concurrent Processing
-  - Distributed Applications (each unit is on different machine, each unit can execute on different system, each program may be in a different languauge)
-  - Enumeration
-  - EPOCH time
-  - Event Handling (The three approaches for performing event handling are by placing the event handling code in one of the below-specified places.)
+  - Concurrent Processing.
+  - Distributed Applications (each unit is on different machine, each unit can execute on different system, each program may be in a different languauge).
+  - Enumeration.
+  - EPOCH time.
+  - Event Handling (The three approaches for performing event handling are by placing the event handling code in one of the below-specified places.).
     - Anonymous Class.
-    - Another Class
-    - Within Class
-  - Git - Fork, Commit, Push, Pull, Cherry Pick, .GitIgnore, Stable branches, Feature and Release branches
-  - Monolothic (single machine, sytstem, and language)
-  - Monotask (single task, easy to define, wait for stimulus, then act) 
-  - Multitask Architectures (each task performed by different thread, resources protected by critical sections)
-  - Multi Threaded Processing
-  - MVC Model-View-Controller
-  - Object Serialization/Deserialization 
-  - Real Time Processing
-  - RTSJ (Real Time Specification for Java, classes, excpetions, expectations, etc.) 
-  - Singleton Pattern
-  - Strategy Pattern
+    - Another Class.
+    - Within Class.
+  - Git - Fork, Commit, Push, Pull, Cherry Pick, .GitIgnore, Stable branches, Feature and Release branches.
+  - Monolothic (single machine, sytstem, and language).
+  - Monotask (single task, easy to define, wait for stimulus, then act).
+  - Multitask Architectures (each task performed by different thread, resources protected by critical sections).
+  - Multi Threaded Processing.
+  - MVC Model-View-Controller.
+  - Object Serialization/Deserialization.
+  - Real Time Processing.
+  - RTSJ (Real Time Specification for Java, classes, excpetions, expectations, etc.).
+  - Singleton Pattern.
+  - Strategy Pattern.
 </details>
 
 <details>
