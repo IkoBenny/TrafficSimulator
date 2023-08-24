@@ -90,16 +90,15 @@ public class View implements Runnable {
 		lightsSlider.addChangeListener(listener);;
 	  }
 
-	//accessor method - returns selected button
 	public JButton getButton(String name) {
 		switch(name) {
-		case "start":
+		case Constants.START:
 			return start;
-		case "stop":
+		case Constants.STOP:
 			return stop;
-		case "pause":
+		case Constants.PAUSE:
 			return pause;
-		case "continueButton":
+		case Constants.CONTINUE:
 			return continueButton;
 		}
 		return null;

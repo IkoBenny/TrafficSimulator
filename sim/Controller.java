@@ -72,22 +72,22 @@ public class Controller implements ActionListener, ChangeListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == view.getButton(Constants.SimulationMode.START.getValue())) {
+		if (e.getSource() == view.getButton(Constants.SimulationMode.START.toString())) {
 			System.out.println("A button press is being responded to...");
 			model.startMode();
 		}
 
-		else if (e.getSource() == view.getButton(Constants.SimulationMode.STOP.getValue())) {
+		else if (e.getSource() == view.getButton(Constants.SimulationMode.STOP.toString())) {
 			System.out.println("A stop button was pressed...");
 			model.stopMode();
 		}
 
-		else if (e.getSource() == view.getButton(Constants.SimulationMode.CONTINUE.getValue())) {
+		else if (e.getSource() == view.getButton(Constants.SimulationMode.CONTINUE.toString())) {
 			System.out.println("A continue button was pressed...");
 			model.continueMode();
 		}
 
-		else if (e.getSource() == view.getButton(Constants.SimulationMode.PAUSE.getValue())) {
+		else if (e.getSource() == view.getButton(Constants.SimulationMode.PAUSE.toString())) {
 			System.out.println("A pause button was pressed...");
 			model.pauseMode();
 		}

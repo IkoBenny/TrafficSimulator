@@ -143,17 +143,17 @@ public class Model {
 	
 	public String getTrafficLightOneStatus() {
 		TrafficLightColor tlc = lightOne.getColor();
-		return TrafficLightColor.toString(tlc);
+		return tlc.toString();
 	}
 	
 	public String getTrafficLightTwoStatus() {
 		TrafficLightColor tlc = lightTwo.getColor();
-		return TrafficLightColor.toString(tlc);
+		return tlc.toString();
 	}
 	
 	public String getTrafficLightThreeStatus() {
 		TrafficLightColor tlc = lightThree.getColor();
-		return TrafficLightColor.toString(tlc);
+		return tlc.toString();
 	}
 	
 	public String getCarOnePosition() {
