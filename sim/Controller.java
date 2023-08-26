@@ -2,6 +2,7 @@ package sim;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 
@@ -106,7 +107,36 @@ public class Controller implements ActionListener, ChangeListener {
 	
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		// JSlider source = (JSlider) e.getSource();
+		JSlider source = (JSlider) e.getSource();
+		JSlider carsSlider = view.getCarsSlider();
+		JSlider car1SpeedSlider = view.getCar1SpeedSlider();
+		JSlider car2SpeedSlider = view.getCar2SpeedSlider();
+		JSlider car3SpeedSlider = view.getCar3SpeedSlider();
+		JSlider lightsSlider = view.getLightsSlider();
+		
+		if (source == carsSlider ) {
+			
+		}
+		
+		else if (source == car1SpeedSlider ) {
+			model.setCarSpeed(1, car1SpeedSlider.getValue());
+		}
+		
+		else if (source == car2SpeedSlider ) {
+			model.setCarSpeed(2, car1SpeedSlider.getValue());
+		}
+		
+		else if (source == car3SpeedSlider ) {
+			model.setCarSpeed(3, car1SpeedSlider.getValue());
+		}
+		
+		else if (source == lightsSlider ) {
+			
+		}
+		
+		else {
+			
+		}
 	}
 	
 	public void stopSimulation() {
