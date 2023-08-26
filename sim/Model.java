@@ -183,4 +183,7 @@ public class Model {
 		return clock.getTime();
 	}
 	
+	public void setCarSpeed(int car, double speed) {
+		cars.get(car).setCurrentSpeed(speed);
+	}
 }
