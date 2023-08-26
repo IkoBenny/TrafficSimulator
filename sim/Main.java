@@ -27,18 +27,12 @@ public class Main {
 		});
 
 		for (;;) {
-
+			Thread.sleep(1000);
+			System.out.println("MAIN - Done Sleeping");
 			switch (m.getMode()) {
 			case START:
 				System.out.println("START");
 				while (m.getMode() == SimulationMode.START) {
-					c.getStartThread().start();
-					c.getModel().getLightOne().start();
-					c.getModel().getLightTwo().start();
-					c.getModel().getLightThree().start();
-					c.getModel().getCarOne().start();
-					c.getModel().getCarTwo().start();
-					c.getModel().getCarThree().start();
 					m.started();
 				}
 				break;
@@ -57,12 +51,6 @@ public class Main {
 			case STOP:
 				System.out.println("STOP");
 				while (m.getMode() == SimulationMode.STOP) {
-					c.getModel().getCarOne().stopCar();
-					c.getModel().getCarTwo().stopCar();
-					c.getModel().getCarThree().stopCar();
-					c.getModel().getLightOne().lightswitch();
-					c.getModel().getLightTwo().lightswitch();
-					c.getModel().getLightThree().lightswitch();
 					m.stopped();
 				}
 				break;
