@@ -1,31 +1,27 @@
 package sim;
 
-
 import java.lang.reflect.InvocationTargetException;
-
 import javax.swing.SwingUtilities;
-
 import sim.Constants.SimulationMode;
 
 public class Main {
+	Model m = new Model();
+	View v = new View();
+	Controller c = new Controller();
+	
+	public static void main(String[] args)  {
+		Main mainObj = new Main();
+		try {
+			mainObj.init();
+			mainObj.sim();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
-	public static void main(String[] args) throws InterruptedException, InvocationTargetException {
-		// create the Model, View and Controller
-		Model m = new Model();
-		View v = new View();
-		Controller c = new Controller();
-
-		// Schedule the GUI to be created on the event thread
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				// show GUI/View, then connect it and Model to Controller
-				v.createAndShowGUI();
-				v.addChangeListeners(c);
-				v.addActionListeners(c);
-				c.setViewAndModel(m, v);
-			}
-		});
-
+	public void sim() throws InterruptedException, InvocationTargetException {
 		for (;;) {
 			Thread.sleep(1000);
 			System.out.println("MAIN - Done Sleeping");
@@ -33,6 +29,8 @@ public class Main {
 			case START:
 				System.out.println("START");
 				while (m.getMode() == SimulationMode.START) {
+					SimWrapper time = new SimWrapper(new Time(), SimulationMode.START, v);
+					time.start();
 					m.started();
 				}
 				break;
@@ -58,5 +56,16 @@ public class Main {
 				break;
 			}
 		}
+	}
+
+	public void init() {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				v.createAndShowGUI();
+				v.addChangeListeners(c);
+				v.addActionListeners(c);
+				c.setViewAndModel(m, v);
+			}
+		});
 	}
 }
