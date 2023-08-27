@@ -1,11 +1,11 @@
 package sim;
 
-public class SimWrapper extends Thread {
+public class TimeWrapper extends Thread {
 	Constants.SimulationMode mode;
 	SimObject obj;
 	View view;
 	
-	public SimWrapper(SimObject obj,Constants.SimulationMode mode, View view) {
+	public TimeWrapper(SimObject obj,Constants.SimulationMode mode, View view) {
 		this.obj = obj;
 		this.mode = mode;
 		this.view = view;
