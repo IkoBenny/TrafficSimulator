@@ -28,8 +28,8 @@ public class Time implements SimObject {
 		}
 
 		@Override
-		public void stop() {
-			
+		public String stop() {
+			return null;
 		}
 
 		@Override
@@ -38,8 +38,8 @@ public class Time implements SimObject {
 		}
 
 		@Override
-		public void pause() {
-			
+		public String pause() {
+			return getTime();
 		}
 		
 	}
