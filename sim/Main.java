@@ -22,6 +22,7 @@ public class Main {
 	}
 
 	public void sim() throws InterruptedException, InvocationTargetException {
+		TimeWrapper time = new TimeWrapper(new Time(), SimulationMode.INIT, v, m);
 		for (;;) {
 			Thread.sleep(1000);
 			System.out.println("MAIN - Done Sleeping");
@@ -29,27 +30,17 @@ public class Main {
 			case START:
 				System.out.println("START");
 				while (m.getMode() == SimulationMode.START) {
-					SimWrapper time = new SimWrapper(new Time(), SimulationMode.START, v);
+					v.getContinueButton().setEnabled(true);
+					v.getPause().setEnabled(true);
+					v.getStop().setEnabled(true);
 					time.start();
 					m.started();
-				}
+				}	
 				break;
-			case PAUSE:
-				System.out.println("PAUSE");
-				while (m.getMode() == SimulationMode.PAUSE) {
-					m.paused();
-				}
-				break;
-			case CONTINUE:
-				System.out.println("CONTINUE");
-				while (m.getMode() == SimulationMode.CONTINUE) {
-					m.restarted();
-				}
-				break;
-			case STOP:
-				System.out.println("STOP");
-				while (m.getMode() == SimulationMode.STOP) {
-					m.stopped();
+			case INIT:
+				System.out.println("INIT");
+				while (m.getMode() == SimulationMode.INIT) {			
+					m.init();
 				}
 				break;
 			default:

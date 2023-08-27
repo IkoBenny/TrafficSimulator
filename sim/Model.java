@@ -59,8 +59,8 @@ public class Model {
 		System.out.println("Starting back up...");
 	}
 
-	public synchronized void restarted() {
-		System.out.println("Inside restarted()...");
+	public synchronized void init() {
+		System.out.println("Inside init()...");
 		try {
 			wait();
 		} catch (InterruptedException e) {
