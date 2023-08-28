@@ -1,74 +1,62 @@
 package sim;
 
-
 import java.lang.reflect.InvocationTargetException;
-
 import javax.swing.SwingUtilities;
-
 import sim.Constants.SimulationMode;
 
 public class Main {
+	Model m = new Model();
+	View v = new View();
+	Controller c = new Controller();
+	
+	public static void main(String[] args)  {
+		Main mainObj = new Main();
+		try {
+			mainObj.init();
+			mainObj.sim();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
-	public static void main(String[] args) throws InterruptedException, InvocationTargetException {
-		// create the Model, View and Controller
-		Model m = new Model();
-		View v = new View();
-		Controller c = new Controller();
-
-		// Schedule the GUI to be created on the event thread
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				// show GUI/View, then connect it and Model to Controller
-				v.createAndShowGUI();
-				v.addChangeListeners(c);
-				v.addActionListeners(c);
-				c.setViewAndModel(m, v);
-			}
-		});
-
+	public void sim() throws InterruptedException, InvocationTargetException {
+		TimeWrapper time = new TimeWrapper(new Time(), SimulationMode.INIT, v, m);
 		for (;;) {
-
+			Thread.sleep(1000);
+			System.out.println("MAIN - Done Sleeping");
 			switch (m.getMode()) {
 			case START:
 				System.out.println("START");
 				while (m.getMode() == SimulationMode.START) {
-					c.getStartThread().start();
-					c.getModel().getLightOne().start();
-					c.getModel().getLightTwo().start();
-					c.getModel().getLightThree().start();
-					c.getModel().getCarOne().start();
-					c.getModel().getCarTwo().start();
-					c.getModel().getCarThree().start();
+					v.getContinueButton().setEnabled(true);
+					v.getPause().setEnabled(true);
+					v.getStop().setEnabled(true);
+					time.start();
 					m.started();
-				}
+				}	
 				break;
-			case PAUSE:
-				System.out.println("PAUSE");
-				while (m.getMode() == SimulationMode.PAUSE) {
-					m.paused();
-				}
-				break;
-			case CONTINUE:
-				System.out.println("CONTINUE");
-				while (m.getMode() == SimulationMode.CONTINUE) {
-					m.restarted();
-				}
-				break;
-			case STOP:
-				System.out.println("STOP");
-				while (m.getMode() == SimulationMode.STOP) {
-					c.getModel().getCarOne().stopCar();
-					c.getModel().getCarTwo().stopCar();
-					c.getModel().getCarThree().stopCar();
-					c.getModel().getLightOne().lightswitch();
-					c.getModel().getLightTwo().lightswitch();
-					c.getModel().getLightThree().lightswitch();
-					m.stopped();
+			case INIT:
+				System.out.println("INIT");
+				while (m.getMode() == SimulationMode.INIT) {			
+					m.init();
 				}
 				break;
 			default:
 				break;
 			}
 		}
+	}
+
+	public void init() {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				v.createAndShowGUI();
+				v.addChangeListeners(c);
+				v.addActionListeners(c);
+				c.setViewAndModel(m, v);
+			}
+		});
 	}
 }

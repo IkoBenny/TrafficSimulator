@@ -168,6 +168,9 @@ public class View implements Runnable {
 		stop = new JButton("STOP");
 		pause = new JButton("PAUSE");
 		continueButton = new JButton("CONTINUE");
+		continueButton.setEnabled(false);
+		pause.setEnabled(false);
+		stop.setEnabled(false);
 
 		// Instantiate Panels
 		containerPanel = new JPanel();
