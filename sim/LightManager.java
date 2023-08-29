@@ -36,4 +36,8 @@ public class LightManager {
 		return lights.get(light).getColor().toString();
 	}
 
+	public ArrayList<TrafficLight> getLights() {
+		return lights;
+	}
+
 }
