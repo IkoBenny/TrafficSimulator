@@ -1,5 +1,6 @@
 package sim;
 
+import java.awt.geom.Point2D;
 import java.lang.reflect.InvocationTargetException;
 import javax.swing.SwingUtilities;
 import sim.Constants.SimulationMode;
@@ -22,7 +23,15 @@ public class Main {
 	}
 
 	public void sim() throws InterruptedException, InvocationTargetException {
+		LightManager lights = new LightManager();
+		CarManager cars = new CarManager();
+		lights.initLights();
+		cars.setLights(lights.getLights());
+		cars.initCars();
+		
 		TimeWrapper time = new TimeWrapper(new Time(), SimulationMode.INIT, v, m);
+		CarWrapper carWrapper1 = new CarWrapper(cars.getCar(0), SimulationMode.INIT, v, m);
+	
 		for (;;) {
 			Thread.sleep(1000);
 			System.out.println("MAIN - Done Sleeping");
@@ -32,8 +41,11 @@ public class Main {
 				while (m.getMode() == SimulationMode.START) {
 					v.getContinueButton().setEnabled(true);
 					v.getPause().setEnabled(true);
-					v.getStop().setEnabled(true);
+					v.getStop().setEnabled(true);			
 					time.start();
+					carWrapper1.start();
+					carWrapper1.startCar();
+		
 					m.started();
 				}	
 				break;
