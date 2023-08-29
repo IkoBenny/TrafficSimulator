@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Time implements SimObject {
+public class Time {
 		private String time;
 		private static Logger log = LoggerFactory.getLogger(Time.class);
 		
@@ -27,17 +27,14 @@ public class Time implements SimObject {
 			log.info("Leaving Time.timestamp()...", time);
 		}
 
-		@Override
 		public String stop() {
 			return null;
 		}
 
-		@Override
 		public String start() {
 			return getTime();
 		}
 
-		@Override
 		public String pause() {
 			return getTime();
 		}

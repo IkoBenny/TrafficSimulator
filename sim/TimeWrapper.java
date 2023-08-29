@@ -2,12 +2,12 @@ package sim;
 
 public class TimeWrapper extends Thread {
 	Constants.SimulationMode mode;
-	SimObject obj;
+	Time  timeObj;
 	View view;
 	Model model;
 	
-	public TimeWrapper(SimObject obj,Constants.SimulationMode mode, View view, Model model) {
-		this.obj = obj;
+	public TimeWrapper(Time timeObj,Constants.SimulationMode mode, View view, Model model) {
+		this.timeObj = timeObj;
 		this.mode = mode;
 		this.view = view;
 		this.model = model;
@@ -17,11 +17,11 @@ public class TimeWrapper extends Thread {
 		this.mode = mode;
 	}
 	
-	public void start() {
+	public void run() {
 		for (;;) {
 			try {
 				Thread.sleep(1000);
-				String s = obj.start();
+				String s = timeObj.start();
 				setMode(model.getMode());
 				if (mode.equals(Constants.SimulationMode.STOP) == false
 						&& mode.equals(Constants.SimulationMode.PAUSE) == false) {
@@ -38,7 +38,7 @@ public class TimeWrapper extends Thread {
 	}
 	
 	public void pause() {
-		String s = obj.start();
+		String s = timeObj.start();
 		if (mode.equals(Constants.SimulationMode.PAUSE)) {
 			view.getField10().setText(s);
 			view.frame.repaint();
