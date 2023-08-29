@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Car extends Thread implements Cloneable {
+public class Car implements Cloneable{
 	private double currentSpeed;
 	private Point2D position;
 	private Instant lastStop;
@@ -125,12 +125,6 @@ public class Car extends Thread implements Cloneable {
 		return null;
 	}
 
-	@Override
-	public void run() {
-		log.info("Inside run()...");
-		go();
-	}
-
 	public synchronized void setCurrentSpeed(double currentSpeed) {
 		log.info("Inside setCurrentSpeed()...");
 		this.currentSpeed = currentSpeed;
@@ -151,6 +145,19 @@ public class Car extends Thread implements Cloneable {
 		c.lights = new ArrayList<>();
 		c.closest = new TrafficLight(closest.getPosition());
 		return c; 
+	}
+
+	public String stop() {
+		return null;
+	}
+
+	public String start() {
+		go();
+		return null;
+	}
+
+	public String pause() {
+		return null;
 	}
 
 }

@@ -31,10 +31,18 @@ public class CarManager {
 		return cars.get(car).getCurrentSpeed();
 	}
 	
+	public Car getCar(int car) {
+		return cars.get(car);
+	}
+	
 	public String getCarPosition(int car) {
 		return cars.get(car).getPositionAsString();
 	}
 	
+	public void setLights(ArrayList<TrafficLight> lights) {
+		this.lights = lights;
+	}
+
 	public Car newCar() {
 		return new Car(new Point2D.Double(0.0, 0.0), Constants.STOP_SPEED, lights);
 	}
