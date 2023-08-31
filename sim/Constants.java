@@ -1,4 +1,7 @@
 package sim;
+
+import java.awt.geom.Point2D;
+
 public class Constants {
 	public static final double STOP_SPEED = 0.0;
 	public static final double FEET_IN_A_MILE = 5280.0;
@@ -15,6 +18,7 @@ public class Constants {
 	public static final String STOP = "STOP";
 	public static final String INIT = "INIT";
 	public static final String CONTINUE = "CONTINUE";
+	public static final Point2D START_POSITION = new Point2D.Double(0.0, 0.0);
 
 	public enum TrafficLightColor {
 		RED, YELLOW, GREEN;	

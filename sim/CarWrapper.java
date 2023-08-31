@@ -1,13 +1,15 @@
 package sim;
 
-public class TimeWrapper extends Thread {
+import javax.swing.SwingUtilities;
+
+public class CarWrapper extends Thread {
 	Constants.SimulationMode mode;
-	Time  timeObj;
+	Car carObj;
 	View view;
 	Model model;
 	
-	public TimeWrapper(Time timeObj,Constants.SimulationMode mode, View view, Model model) {
-		this.timeObj = timeObj;
+	public CarWrapper(Car carObj,Constants.SimulationMode mode, View view, Model model) {
+		this.carObj = carObj;
 		this.mode = mode;
 		this.view = view;
 		this.model = model;
@@ -20,13 +22,18 @@ public class TimeWrapper extends Thread {
 	public void run() {
 		for (;;) {
 			try {
-				Thread.sleep(1000);
-				String s = timeObj.start();
+				Thread.sleep(1000);		
 				setMode(model.getMode());
 				if (mode.equals(Constants.SimulationMode.STOP) == false
 						&& mode.equals(Constants.SimulationMode.PAUSE) == false) {
-					view.getField10().setText(s);
-					view.frame.repaint();
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							view.getField1().setText(Double.toString(carObj.getCurrentSpeed()));
+							view.getField7().setText(carObj.getPositionAsString());
+							view.frame.repaint();
+						}
+					});
+
 				}
 				
 				else if (mode.equals(Constants.SimulationMode.PAUSE)) {
@@ -38,11 +45,14 @@ public class TimeWrapper extends Thread {
 	}
 	
 	public void pause() {
-		String s = timeObj.start();
 		if (mode.equals(Constants.SimulationMode.PAUSE)) {
-			view.getField10().setText(s);
+			view.getField1().setText(carObj.getPositionAsString());
+			view.getField7().setText(Double.toString(carObj.getCurrentSpeed()));
 			view.frame.repaint();
 		}
 	}
+	
+	public void startCar () {
+		carObj.go();
+	}
 }
-

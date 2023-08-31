@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Car extends Thread implements Cloneable {
+public class Car implements Cloneable{
 	private double currentSpeed;
 	private Point2D position;
 	private Instant lastStop;
@@ -16,14 +16,9 @@ public class Car extends Thread implements Cloneable {
 	private TrafficLight closest;
 	private static Logger log = LoggerFactory.getLogger(Car.class);
 
-	public Car(Point2D.Double start, double speed, ArrayList<TrafficLight> ahead) {
-		log.info("Inside Car(start, speed)...");
-		currentSpeed = speed;
-		position = start;
-		isMoving = false;
-		lastStop = Instant.now();
-		lights = ahead;
-		log.info("Leaving Car(start, speed)...");
+	public Car() {
+		log.info("Inside Car() {}...", position);
+		log.info("Inside Car() {}...", position);
 	}
 
 	public synchronized void calculatePosition() {
@@ -55,6 +50,10 @@ public class Car extends Thread implements Cloneable {
 		double y = position.getY();
 		log.info("Leaving getPositionAsString()...");
 		return "(" + x + "," + y + ")";
+	}
+	
+	public void setLights(ArrayList<TrafficLight> lights) {
+		this.lights = lights;
 	}
 
 	public void go() {
@@ -125,12 +124,6 @@ public class Car extends Thread implements Cloneable {
 		return null;
 	}
 
-	@Override
-	public void run() {
-		log.info("Inside run()...");
-		go();
-	}
-
 	public synchronized void setCurrentSpeed(double currentSpeed) {
 		log.info("Inside setCurrentSpeed()...");
 		this.currentSpeed = currentSpeed;
@@ -153,4 +146,32 @@ public class Car extends Thread implements Cloneable {
 		return c; 
 	}
 
+	public String stop() {
+		return null;
+	}
+
+	public String start() {
+		go();
+		return null;
+	}
+
+	public String pause() {
+		return null;
+	}
+
+	public void setPosition(Point2D position) {
+		this.position = position;
+	}
+
+	public void setIsMoving(boolean b) {
+		isMoving = b;	
+	}
+
+	public void setLastStop(Instant now) {
+		lastStop = now;		
+	}
+
+	public void setClosest(TrafficLight closestLight) {
+		closest = closestLight;
+	}
 }
