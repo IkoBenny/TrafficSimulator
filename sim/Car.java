@@ -16,14 +16,9 @@ public class Car implements Cloneable{
 	private TrafficLight closest;
 	private static Logger log = LoggerFactory.getLogger(Car.class);
 
-	public Car(Point2D.Double start, double speed, ArrayList<TrafficLight> ahead) {
-		log.info("Inside Car(start, speed)...");
-		currentSpeed = speed;
-		position = start;
-		isMoving = false;
-		lastStop = Instant.now();
-		lights = ahead;
-		log.info("Leaving Car(start, speed)...");
+	public Car() {
+		log.info("Inside Car() {}...", position);
+		log.info("Inside Car() {}...", position);
 	}
 
 	public synchronized void calculatePosition() {
@@ -55,6 +50,10 @@ public class Car implements Cloneable{
 		double y = position.getY();
 		log.info("Leaving getPositionAsString()...");
 		return "(" + x + "," + y + ")";
+	}
+	
+	public void setLights(ArrayList<TrafficLight> lights) {
+		this.lights = lights;
 	}
 
 	public void go() {
@@ -160,4 +159,19 @@ public class Car implements Cloneable{
 		return null;
 	}
 
+	public void setPosition(Point2D position) {
+		this.position = position;
+	}
+
+	public void setIsMoving(boolean b) {
+		isMoving = b;	
+	}
+
+	public void setLastStop(Instant now) {
+		lastStop = now;		
+	}
+
+	public void setClosest(TrafficLight closestLight) {
+		closest = closestLight;
+	}
 }
