@@ -1,6 +1,8 @@
 package sim;
 
-public class TimeWrapper extends Thread {
+import javax.swing.SwingUtilities;
+
+public class TimeWrapper extends Thread implements ThreadWrapperInterface {
 	Constants.SimulationMode mode;
 	Time  timeObj;
 	View view;
@@ -18,6 +20,11 @@ public class TimeWrapper extends Thread {
 	}
 	
 	public void run() {
+		startThread();
+	}
+	
+	@Override
+	public void startThread() {
 		for (;;) {
 			try {
 				Thread.sleep(1000);
@@ -25,10 +32,13 @@ public class TimeWrapper extends Thread {
 				setMode(model.getMode());
 				if (mode.equals(Constants.SimulationMode.STOP) == false
 						&& mode.equals(Constants.SimulationMode.PAUSE) == false) {
-					view.getField10().setText(s);
-					view.frame.repaint();
-				}
-				
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							view.getField10().setText(s);
+							view.frame.repaint();
+						}
+					});
+				}		
 				else if (mode.equals(Constants.SimulationMode.PAUSE)) {
 				}
 			} catch (InterruptedException e) {
@@ -36,12 +46,30 @@ public class TimeWrapper extends Thread {
 			}
 		}
 	}
-	
-	public void pause() {
+
+	@Override
+	public void pauseThread() {
 		String s = timeObj.start();
 		if (mode.equals(Constants.SimulationMode.PAUSE)) {
-			view.getField10().setText(s);
-			view.frame.repaint();
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					view.getField10().setText(s);
+					view.frame.repaint();
+				}
+			});
+		}	
+	}
+
+	@Override
+	public void stopThread() {
+		String s = timeObj.start();
+		if (mode.equals(Constants.SimulationMode.PAUSE)) {
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					view.getField10().setText(s);
+					view.frame.repaint();
+				}
+			});
 		}
 	}
 }
