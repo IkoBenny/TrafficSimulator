@@ -2,8 +2,11 @@ package sim;
 
 import java.lang.reflect.InvocationTargetException;
 
+import lombok.Getter;
 import sim.Constants.SimulationMode;
+import wrappers.CarDTO;
 
+@Getter
 public class SimulationAlgorithm implements Command {
 	private Mediator mvc;
 	
@@ -23,17 +26,21 @@ public class SimulationAlgorithm implements Command {
 	}
 
 	private void sim() throws InterruptedException, InvocationTargetException {
-		for (;;) {
-			Thread.sleep(1000);
-			System.out.println("MAIN - Done Sleeping");
+		
 			switch (mvc.getM().getMode()) {
 			case START:
 				System.out.println("START");
 				while (mvc.getM().getMode() == SimulationMode.START) {
 					mvc.getV().getContinueButton().setEnabled(true);
 					mvc.getV().getPause().setEnabled(true);
-					mvc.getV().getStop().setEnabled(true);			
-					mvc.getC().startThreads();
+					mvc.getV().getStop().setEnabled(true);
+					
+					String s = mvc.getM().getCarPosition(0);
+					double d = mvc.getM().getCarSpeed(0);
+					CarDTO c = new CarDTO(mvc, d, s, 0);
+					c.start();
+					mvc.getM().startCar(0);
+					mvc.getM().startLight(0);
 					mvc.getM().started();
 				}	
 				break;
@@ -48,4 +55,4 @@ public class SimulationAlgorithm implements Command {
 			}
 		}
 	}
-}
+

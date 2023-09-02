@@ -1,7 +1,5 @@
-package sim;
+package interfaces;
 
 public interface ThreadWrapperInterface {
 	public void startThread();
-	public void pauseThread();
-	public void stopThread();
 }

@@ -1,17 +1,22 @@
-package create;
+package builder;
 
 import java.time.Instant;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import interfaces.CarBuilderInterface;
 import sim.Car;
 import sim.Constants;
-import sim.Mediator;
 import sim.Model;
 
 public class CarBuilder implements CarBuilderInterface {
 	private Car car;
-	private Mediator mvc;
+	private static Logger log = LoggerFactory.getLogger(CarBuilder.class);
 	
-	CarBuilder(Mediator mvc) {
-		this.mvc = mvc;
+	public CarBuilder() {
+		log.info("Inside CarBuilder() {}...");
+		log.info("Leaving CarBuilder() {}...");
 	}
 	
 	public void build() {
