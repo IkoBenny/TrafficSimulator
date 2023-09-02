@@ -3,10 +3,16 @@ package create;
 import java.time.Instant;
 import sim.Car;
 import sim.Constants;
+import sim.Mediator;
 import sim.Model;
 
 public class CarBuilder implements CarBuilderInterface {
 	private Car car;
+	private Mediator mvc;
+	
+	CarBuilder(Mediator mvc) {
+		this.mvc = mvc;
+	}
 	
 	public void build() {
 		car = getNewCar();
@@ -24,8 +30,7 @@ public class CarBuilder implements CarBuilderInterface {
 	/*Builds light related components*/
 	@Override
 	public void buildB() {
-		TrafficLightManager manager = Model.getLights();
-		car.setLights(manager.getLights());
+		car.setLights(Model.getLights());
 		car.setClosest(car.getClosestLight(car.getPositionAsDouble()));
 	}
 
@@ -36,15 +41,6 @@ public class CarBuilder implements CarBuilderInterface {
 
 	private Car getNewCar() {
 		return new Car();
-	}
-	
-	public static void main(String [] args) {
-		Integer i = 5;
-		Integer j = 7;
-		int s = 7;
-		Integer k = j;
-		j = j +7;
-		System.out.println("done");
 	}
 	
 }
