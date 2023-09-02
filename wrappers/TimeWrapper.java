@@ -1,6 +1,13 @@
-package sim;
+package wrappers;
 
 import javax.swing.SwingUtilities;
+
+import interfaces.ThreadWrapperInterface;
+import sim.Constants;
+import sim.Model;
+import sim.Time;
+import sim.View;
+import sim.Constants.SimulationMode;
 
 public class TimeWrapper extends Thread implements ThreadWrapperInterface {
 	Constants.SimulationMode mode;
@@ -35,7 +42,7 @@ public class TimeWrapper extends Thread implements ThreadWrapperInterface {
 					SwingUtilities.invokeLater(new Runnable() {
 						public void run() {
 							view.getField10().setText(s);
-							view.frame.repaint();
+							//view.frame.repaint();
 						}
 					});
 				}		
@@ -47,27 +54,27 @@ public class TimeWrapper extends Thread implements ThreadWrapperInterface {
 		}
 	}
 
-	@Override
+	
 	public void pauseThread() {
 		String s = timeObj.start();
 		if (mode.equals(Constants.SimulationMode.PAUSE)) {
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
 					view.getField10().setText(s);
-					view.frame.repaint();
+					//view.frame.repaint();
 				}
 			});
 		}	
 	}
 
-	@Override
+	
 	public void stopThread() {
 		String s = timeObj.start();
 		if (mode.equals(Constants.SimulationMode.PAUSE)) {
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
 					view.getField10().setText(s);
-					view.frame.repaint();
+					//view.frame.repaint();
 				}
 			});
 		}

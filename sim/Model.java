@@ -1,22 +1,31 @@
 package sim;
 
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import builder.CarBuilder;
+import builder.CarBuilderDirector;
 import lombok.Getter;
 import sim.Constants.SimulationMode;
 
 @Getter
 public class Model {
-	private CarManager cars = new CarManager();
-	private LightManager lights = new LightManager();
+	private static ArrayList <TrafficLight> lights;
+	private static ArrayList<Car> cars;
 	private Time clock;
 	private SimulationMode mode;
+	private static Logger log = LoggerFactory.getLogger(Model.class);
 	
 	public Model() {
+		log.info("Inside Model() {}...");	
 		clock = new Time();
-		CarManager cars = new CarManager();
-		LightManager lights = new LightManager();
-		cars.initCars();
-		lights.initLights();
 		mode = SimulationMode.INIT;
+		lights = new ArrayList<>();
+		cars = new ArrayList<>();
+		log.info("Leaving Model() {}...");
 	}
 	
 	public synchronized void startMode () {
@@ -83,7 +92,58 @@ public class Model {
 		return clock.getTime();
 	}
 
-	public void setCarSpeed(int car, int speed) {
-		cars.setCarSpeed(car, speed);
+	public void addLight(TrafficLight l) {
+		log.info("Inside addLight(TrafficLight)...");
+		lights.add(l);
+		log.info("Leaving addLight(TrafficLight)...");
+	}
+	
+	public TrafficLight newLight() {
+		log.info("Inside newLight()...");
+		if (lights.size() == 0) {
+			log.info("Leaving newLight()...");
+			return new TrafficLight(new Point2D.Double(Constants.THOUSAND_METERS_IN_FEET, 0));
+		}
+		else {
+			Double position = (lights.size() + 1) * Constants.THOUSAND_METERS_IN_FEET;
+			log.info("Leaving newLight()...");
+			return new TrafficLight(new Point2D.Double(position, 0));
+		}		
+	}
+	
+	public void startLight(int light) {
+		lights.get(light).lightswitch();
+	}
+	
+	public static ArrayList<TrafficLight> getLights() {
+		return lights;
+	}
+
+	public void startCar(int car) {
+		cars.get(car).go();
+	}
+	
+	public void setCarSpeed(int car, double speed) {
+		cars.get(car).setCurrentSpeed(speed);
+	}
+	
+	public double getCarSpeed(int car) {
+		return cars.get(car).getCurrentSpeed();
+	}
+	
+	public Car getCar(int car) {
+		return cars.get(car);
+	}
+	
+	public String getCarPosition(int car) {
+		return cars.get(car).getPositionAsString();
+	}
+	
+	public void addCar(Car c) {
+		cars.add(c);
+	}
+	
+	public static ArrayList<Car> getCars() {
+		return cars;
 	}
 }
