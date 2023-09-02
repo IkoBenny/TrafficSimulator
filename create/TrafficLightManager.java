@@ -1,7 +1,10 @@
-package sim;
+package create;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+
+import sim.Constants;
+import sim.TrafficLight;
 
 public class TrafficLightManager {
 	private ArrayList <TrafficLight> lights = new ArrayList<>();
@@ -29,10 +32,13 @@ public class TrafficLightManager {
 				if(lights.get(i).getPosition().getX()< position) {
 					return lights.get(i);
 				}
-			}
-			
+			}		
 		}
 		return null;
+	}
+
+	public ArrayList<TrafficLight> getLights() {
+		return lights;
 	}
 
 }
