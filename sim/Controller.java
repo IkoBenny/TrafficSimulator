@@ -15,7 +15,7 @@ import lombok.Getter;
 public class Controller implements ActionListener, ChangeListener {
 	private View view;
 	private Model model;
-	
+
 	/*
 	 * Thread startThread = new Thread(new Runnable() {
 	 * 
@@ -107,6 +107,13 @@ public class Controller implements ActionListener, ChangeListener {
 		else {
 			
 		}
+	}
+	
+	public void startPressed() {
+		view.getStart().setEnabled(false);
+		view.getContinueButton().setEnabled(true);
+		view.getPause().setEnabled(true);
+		view.getStop().setEnabled(true);
 	}
 
 }
