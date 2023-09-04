@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Car implements Cloneable{
+public class Car extends Thread implements Cloneable{
 	private double currentSpeed;
 	private Point2D position;
 	private Instant lastStop;
@@ -146,13 +146,8 @@ public class Car implements Cloneable{
 		return c; 
 	}
 
-	public String stop() {
-		return null;
-	}
-
-	public String start() {
+	public void run() {
 		go();
-		return null;
 	}
 
 	public String pause() {
