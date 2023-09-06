@@ -12,7 +12,7 @@ import javax.swing.event.ChangeListener;
 import lombok.Getter;
 
 @Getter
-public class Controller implements ActionListener, ChangeListener {
+public class Controller implements ActionListener {
 	private View view;
 	private Model model;
 
@@ -49,22 +49,22 @@ public class Controller implements ActionListener, ChangeListener {
 	 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == view.getButton(Constants.SimulationMode.START.toString())) {
+		if (e.getSource() == view.fetchButton(Constants.SimulationMode.START.toString())) {
 			System.out.println("A button press is being responded to...");
 			model.startMode();
 		}
 
-		else if (e.getSource() == view.getButton(Constants.SimulationMode.STOP.toString())) {
+		else if (e.getSource() == view.fetchButton(Constants.SimulationMode.STOP.toString())) {
 			System.out.println("A stop button was pressed...");
 			model.stopMode();
 		}
 
-		else if (e.getSource() == view.getButton(Constants.SimulationMode.CONTINUE.toString())) {
+		else if (e.getSource() == view.fetchButton(Constants.SimulationMode.CONTINUE.toString())) {
 			System.out.println("A continue button was pressed...");
 			model.continueMode();
 		}
 
-		else if (e.getSource() == view.getButton(Constants.SimulationMode.PAUSE.toString())) {
+		else if (e.getSource() == view.fetchButton(Constants.SimulationMode.PAUSE.toString())) {
 			System.out.println("A pause button was pressed...");
 			model.pauseMode();
 		}
@@ -75,39 +75,7 @@ public class Controller implements ActionListener, ChangeListener {
 		this.view = view;
 	}
 	
-	@Override
-	public void stateChanged(ChangeEvent e) {
-		JSlider source = (JSlider) e.getSource();
-		JSlider carsSlider = view.getCarsSlider();
-		JSlider car1SpeedSlider = view.getCar1SpeedSlider();
-		JSlider car2SpeedSlider = view.getCar2SpeedSlider();
-		JSlider car3SpeedSlider = view.getCar3SpeedSlider();
-		JSlider lightsSlider = view.getLightsSlider();
-		
-		if (source == carsSlider ) {
-			
-		}
-		
-		else if (source == car1SpeedSlider ) {
-			model.setCarSpeed(1, car1SpeedSlider.getValue());
-		}
-		
-		else if (source == car2SpeedSlider ) {
-			model.setCarSpeed(2, car1SpeedSlider.getValue());
-		}
-		
-		else if (source == car3SpeedSlider ) {
-			model.setCarSpeed(3, car1SpeedSlider.getValue());
-		}
-		
-		else if (source == lightsSlider ) {
-			
-		}
-		
-		else {
-			
-		}
-	}
+	
 	
 	public void startPressed() {
 		view.getStart().setEnabled(false);
