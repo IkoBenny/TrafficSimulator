@@ -2,69 +2,33 @@ package sim;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.EventListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import lombok.Data;
+import lombok.Getter;
 
 import lombok.Data;
 import lombok.Getter;
 
 @Data
 @Getter
-public class View implements Runnable {
+public class View implements Runnable, ChangeListener, EventListener {
 	JFrame frame;
-	
 	JPanel containerPanel;
-	JPanel car1Panel;
-	JPanel car2Panel;
-	JPanel car3Panel;
+	ArrayList<CarView> carViews;
 	JPanel buttonPanel;
-	JPanel sliderPanel;
-	JPanel sliderLabelPanel;
-	JPanel timePanel;
-	
-	JSlider carsSlider;
-	JSlider car1SpeedSlider;
-	JSlider car2SpeedSlider;
-	JSlider car3SpeedSlider;
 	JSlider lightsSlider;
-	
-	JTextField field1;
-	JTextField field2;
-	JTextField field3;
-	JTextField field4;
-	JTextField field5;
-	JTextField field6;
-	JTextField field7;
-	JTextField field8;
-	JTextField field9;
-	JTextField field10;
-	
-	JLabel car1;
-	JLabel car2;
-	JLabel car3;
-	JLabel light1;
-	JLabel light2;
-	JLabel light3;
-	JLabel speed;
-	JLabel speed2;
-	JLabel speed3;
-	JLabel status;
-	JLabel status2;
-	JLabel status3;
-	JLabel noCars;
-	JLabel noLights;
-	JLabel car1Speed;
-	JLabel car2Speed;
-	JLabel car3Speed;
-	JLabel car1Location;
-	JLabel car2Location;
-	JLabel car3Location;
+	JSlider carsSlider;
 	
 	JButton start;
 	JButton stop;
@@ -81,16 +45,8 @@ public class View implements Runnable {
 		pause.addActionListener(listener);
 		continueButton.addActionListener(listener);
 	  }
-	
-	public void addChangeListeners(ChangeListener listener) {
-		carsSlider.addChangeListener(listener);
-		car1SpeedSlider.addChangeListener(listener);
-		car2SpeedSlider.addChangeListener(listener);
-		car3SpeedSlider.addChangeListener(listener);
-		lightsSlider.addChangeListener(listener);;
-	  }
 
-	public JButton getButton(String name) {
+	public JButton fetchButton(String name) {
 		switch(name) {
 		case Constants.START:
 			return start;
@@ -106,63 +62,12 @@ public class View implements Runnable {
 		 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		View view = new View();
+		Thread thread = new Thread(view);
+		thread.start();;
 	}
 
 	public void createAndShowGUI() {
-		// Instantiate Sliders
-		carsSlider = new JSlider(1, 5, 3);
-		car1SpeedSlider = new JSlider(0, 120, 55);
-		car2SpeedSlider = new JSlider(0, 120, 55);
-		car3SpeedSlider = new JSlider(0, 120, 55);
-		lightsSlider = new JSlider(1, 5, 3);
-		carsSlider.setMajorTickSpacing(1);
-		carsSlider.setPaintTicks(true);
-		car1SpeedSlider.setMajorTickSpacing(5);
-		car1SpeedSlider.setPaintTicks(true);
-		car2SpeedSlider.setMajorTickSpacing(5);
-		car2SpeedSlider.setPaintTicks(true);
-		car3SpeedSlider.setMajorTickSpacing(5);
-		car3SpeedSlider.setPaintTicks(true);
-		lightsSlider.setMajorTickSpacing(1);
-		lightsSlider.setPaintTicks(true);
-		// Integer value = (Integer) carsSlider.getValue();
-		// field1.setText(value.toString());
-
-		// Instantiate TextFields
-		field1 = new JTextField(20);
-		field2 = new JTextField(20);
-		field3 = new JTextField(20);
-		field4 = new JTextField(20);
-		field5 = new JTextField(20);
-		field6 = new JTextField(20);
-		field7 = new JTextField(20);
-		field8 = new JTextField(20);
-		field9 = new JTextField(20);
-		field10 = new JTextField(20);
-
-		// Instantiate Labels
-		car1 = new JLabel("Car #1:	 ");
-		car2 = new JLabel("Car #2:	");
-		car3 = new JLabel("Car #3:	");
-		light1 = new JLabel("Light #1:	 ");
-		light2 = new JLabel("Light #2:	");
-		light3 = new JLabel("Light #3:	");
-		speed = new JLabel("Speed: 	");
-		speed2 = new JLabel("Speed: 	");
-		speed3 = new JLabel("Speed: 	");
-		status = new JLabel("Status: 	");
-		status2 = new JLabel("Status: 	");
-		status3 = new JLabel("Status: 	");
-		noCars = new JLabel("No. of Cars: 	");
-		noLights = new JLabel("No. of Lights: 	");
-		car1Speed = new JLabel("Car #1 Speed: 	");
-		car2Speed = new JLabel("Car #2 Speed: 	");
-		car3Speed = new JLabel("Car #3 Speed: 	");
-		car1Location = new JLabel("Location: 	");
-		car2Location = new JLabel("Location: 	");
-		car3Location = new JLabel("Location: 	");
-
 		// Instantiate Buttons
 		start = new JButton("START");
 		stop = new JButton("STOP");
@@ -174,64 +79,28 @@ public class View implements Runnable {
 
 		// Instantiate Panels
 		containerPanel = new JPanel();
-		sliderPanel = new JPanel();
-		car1Panel = new JPanel();
-		car2Panel = new JPanel();
-		car3Panel = new JPanel();
 		buttonPanel = new JPanel();
-		sliderLabelPanel = new JPanel();
-		timePanel = new JPanel();
-
-		// Add Components to Panels
-		sliderLabelPanel.add(noCars);
-		sliderLabelPanel.add(car1Speed);
-		sliderLabelPanel.add(car2Speed);
-		sliderLabelPanel.add(car3Speed);
-		sliderLabelPanel.add(noLights);
-		sliderLabelPanel.setLayout(new GridLayout(0, 5));
-		sliderPanel.add(carsSlider);
-		sliderPanel.add(car1SpeedSlider);
-		sliderPanel.add(car2SpeedSlider);
-		sliderPanel.add(car3SpeedSlider);
-		sliderPanel.add(lightsSlider);
-		sliderPanel.setLayout(new GridLayout(0, 5));
-		timePanel.add(field10);
-		car1Panel.add(car1);
-		car2Panel.add(car2);
-		car3Panel.add(car3);
-		car1Panel.add(speed);
-		car1Panel.add(field1);
-		car1Panel.add(car1Location);
-		car1Panel.add(field7);
-		car1Panel.add(light1);
-		car1Panel.add(status);
-		car1Panel.add(field4);
-		car2Panel.add(speed2);
-		car2Panel.add(field2);
-		car2Panel.add(car2Location);
-		car2Panel.add(field8);
-		car2Panel.add(light2);
-		car2Panel.add(status2);
-		car2Panel.add(field5);
-		car3Panel.add(speed3);
-		car3Panel.add(field3);
-		car3Panel.add(car3Location);
-		car3Panel.add(field9);
-		car3Panel.add(light3);
-		car3Panel.add(status3);
-		car3Panel.add(field6);
-		containerPanel.add(sliderLabelPanel);
-		containerPanel.add(sliderPanel);
-		containerPanel.add(car1Panel);
-		containerPanel.add(car2Panel);
-		containerPanel.add(car3Panel);
+		CarView cv = new CarView(0); 
 		containerPanel.add(buttonPanel);
-		containerPanel.add(timePanel);
+		
+		//Instantiate Sliders	
+		carsSlider = new JSlider(1, 5, 3);
+		lightsSlider = new JSlider(1, 5, 3);		
+		
+		carsSlider.setMajorTickSpacing(1);
+		lightsSlider.setMajorTickSpacing(1);
+		
+		carsSlider.setPaintTicks(true);			
+		lightsSlider.setPaintTicks(true);
+		
 		buttonPanel.add(start);
 		buttonPanel.add(pause);
 		buttonPanel.add(continueButton);
 		buttonPanel.add(stop);
-		containerPanel.setLayout(new GridLayout(7, 0));
+		buttonPanel.add(carsSlider);
+		buttonPanel.add(lightsSlider);
+		buttonPanel.add(cv.getCarPanel());
+		containerPanel.setLayout(new GridLayout());
 
 		// Instantiate Frame
 		frame = new JFrame("Traffic Simulator");
@@ -246,6 +115,15 @@ public class View implements Runnable {
 	@Override
 	public void run() {
 		SwingUtilities.invokeLater(()-> createAndShowGUI());	
+	}
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
+	}
+
+	public CarView getCv(int id) {
+		CarView cv = carViews.get(id);
+		return cv;
 	}
 
 }
