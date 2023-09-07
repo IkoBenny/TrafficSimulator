@@ -7,10 +7,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import lombok.Getter;
 
 @Getter
-public class CarView {
+public class CarView implements ChangeListener {
 	Mediator mvc;
 	JPanel carPanel;
 	JPanel carPanel2;
@@ -68,5 +71,17 @@ public class CarView {
 		JFrame jf = new JFrame();
 		CarView view = new CarView(1);
 		jf.add(view.getCarPanel());
+	}
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		int speedInt = carSpeedSlider.getValue();
+		int positionInt =  carPositionSlider.getValue();
+		
+		String speedText = Integer.toString(speedInt);
+		String positionText = Integer.toString(positionInt);
+		
+		this.speed.setText(speedText);
+		this.position.setText(positionText);
 	}
 }
