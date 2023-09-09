@@ -2,6 +2,7 @@ package sim;
 
 import java.awt.GridLayout;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -10,6 +11,7 @@ import javax.swing.JPanel;
 import lombok.Getter;
 import sim.Constants.SimulationMode;
 import wrappers.CarDTO;
+import wrappers.LightDTO;
 
 @Getter
 public class SimulationAlgorithm implements Command {
@@ -37,11 +39,25 @@ public class SimulationAlgorithm implements Command {
 				System.out.println("START");
 				while (mvc.getM().getMode() == SimulationMode.START) {
 					mvc.getC().startPressed();
-					String s = mvc.getM().getCarPosition(0);
-					double d = mvc.getM().getCarSpeed(0);
-					CarDTO c = new CarDTO(mvc, d, s, 0);
-					c.start();
-					mvc.getM().startLight(0);
+					ArrayList<CarDTO> cdtos = new ArrayList<>();
+					ArrayList<LightDTO> ldtos = new ArrayList<>();
+					
+					for (int i =0; i< Model.getCars().size(); i++) {
+						String s = mvc.getM().getCarPosition(i);
+						double d = mvc.getM().getCarSpeed(i);
+						CarDTO c = new CarDTO(mvc, d, s, i);
+						cdtos.add(c);
+						c.start();
+					}		
+					
+					for (int i =0; i< Model.getLights().size(); i++) {
+						String p = mvc.getM().getLightPosition(i);
+						String s = mvc.getM().getLightStatus(i);
+						LightDTO l = new LightDTO(mvc, s, p, i);
+						ldtos.add(l);
+						l.start();
+					}	
+					
 					mvc.getM().started();
 				}	
 				break;
