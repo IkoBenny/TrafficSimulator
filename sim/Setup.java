@@ -23,8 +23,8 @@ public class Setup implements Command {
 					mvc.getV().createAndShowGUI();
 					mvc.getV().addActionListeners(mvc.getC());
 					mvc.getV().addChangeListeners(mvc.getC());
-					mvc.getC().setViewAndModel(mvc.getM(), mvc.getV());
 				}
 			});
 	}
+	
 }

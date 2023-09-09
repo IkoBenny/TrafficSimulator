@@ -37,8 +37,8 @@ public class CarDTO extends Thread implements ThreadWrapperInterface {
 					SwingUtilities.invokeLater(new Runnable() {
 						public void run() {
 							update();
-							mvc.getV().getField1().setText(Double.toString(speed));
-							mvc.getV().getField7().setText(position);
+							mvc.getV().getCarViews().get(id).getSpeed().setText(Double.toString(speed));
+							mvc.getV().getCarViews().get(id).getPosition().setText(position);
 							mvc.getV().getFrame().repaint();
 						}
 					});
