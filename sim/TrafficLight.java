@@ -52,6 +52,14 @@ public class TrafficLight extends Thread {
 		}
 	}
 
+	public synchronized String getPositionAsString() {
+		log.info("Inside getPositionAsString()...");
+		double x = position.getX();
+		double y = position.getY();
+		log.info("Leaving getPositionAsString()...");
+		return "(" + x + "," + y + ")";
+	}
+	
 	synchronized void changeColor() {
 		log.trace("Inside TrafficLight.changeColor()...");
 		switch (tlc) {

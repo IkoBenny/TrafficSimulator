@@ -111,14 +111,31 @@ public class Model {
 		}		
 	}
 	
+	public TrafficLight getLight(int id) {
+		TrafficLight light = lights.get(id);
+		return light;
+	}
+	
 	public void startLight(int light) {
-		lights.get(light).lightswitch();
+		lights.get(light).start();
 	}
 	
 	public static ArrayList<TrafficLight> getLights() {
 		return lights;
 	}
 
+	public String getLightPosition(int i) {
+		String position;
+		position = lights.get(i).getPositionAsString();
+		return position;
+	}
+
+	public String getLightStatus(int i) {
+		String status;
+		status = lights.get(i).getTlc().toString();
+		return status;
+	}
+	
 	public void startCar(int car) {
 		cars.get(car).start();
 	}
@@ -146,4 +163,8 @@ public class Model {
 	public static ArrayList<Car> getCars() {
 		return cars;
 	}
+
+
+
+
 }
