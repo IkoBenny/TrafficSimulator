@@ -9,7 +9,7 @@ import lombok.Getter;
 public class Mediator {
 	private Model m = new Model();
 	private View v = new View();
-	private Controller c = new Controller();
+	private Controller c = new Controller(this);
 	private static Logger log = LoggerFactory.getLogger(Mediator.class);
 	
 	public Mediator() {

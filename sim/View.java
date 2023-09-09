@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -26,6 +27,7 @@ public class View implements Runnable, ChangeListener, EventListener {
 	JFrame frame;
 	JPanel containerPanel;
 	ArrayList<CarView> carViews;
+	ArrayList<LightView> lightViews;
 	JPanel buttonPanel;
 	JSlider lightsSlider;
 	JSlider carsSlider;
@@ -34,6 +36,8 @@ public class View implements Runnable, ChangeListener, EventListener {
 	JButton stop;
 	JButton pause;
 	JButton continueButton;
+	
+	JTextField time;
 
 	public View() {
 		System.out.println("View created...");
@@ -77,6 +81,9 @@ public class View implements Runnable, ChangeListener, EventListener {
 		pause.setEnabled(false);
 		stop.setEnabled(false);
 
+		carViews = new ArrayList<>();	
+		lightViews = new ArrayList<>();
+		
 		// Instantiate Panels
 		containerPanel = new JPanel();
 		buttonPanel = new JPanel();
@@ -124,6 +131,14 @@ public class View implements Runnable, ChangeListener, EventListener {
 	public CarView getCv(int id) {
 		CarView cv = carViews.get(id);
 		return cv;
+	}
+
+	public LightView getLv(int id) {
+		LightView lv = lightViews.get(id);
+		return lv;
+	}
+	
+	public void addChangeListeners(Controller c) {		
 	}
 
 }
