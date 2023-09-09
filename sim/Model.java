@@ -120,7 +120,7 @@ public class Model {
 	}
 
 	public void startCar(int car) {
-		cars.get(car).go();
+		cars.get(car).start();
 	}
 	
 	public void setCarSpeed(int car, double speed) {
