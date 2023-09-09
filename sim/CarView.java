@@ -14,7 +14,6 @@ import lombok.Getter;
 
 @Getter
 public class CarView implements ChangeListener {
-	Mediator mvc;
 	JPanel carPanel;
 	JPanel carPanel2;
 	JPanel carPanel3;
@@ -34,9 +33,11 @@ public class CarView implements ChangeListener {
 		carPositionSlider.setMajorTickSpacing(5000);
 		carPositionSlider.setMinorTickSpacing(1000);
 		carPositionSlider.setPaintTicks(true);
+		carPositionSlider.setPaintLabels(true);
 		carSpeedSlider = new JSlider(0, 120, 55);
-		carSpeedSlider.setMajorTickSpacing(5);
-		carSpeedSlider.setPaintTicks(true);
+		carSpeedSlider.setMajorTickSpacing(30);
+		carSpeedSlider.setPaintTicks(false);
+		carSpeedSlider.setPaintLabels(true);
 		carPanel = new JPanel();
 		carPanel2 = new JPanel();
 		carPanel3 = new JPanel();
@@ -70,7 +71,9 @@ public class CarView implements ChangeListener {
 	public static void main(String[] args) {
 		JFrame jf = new JFrame();
 		CarView view = new CarView(1);
+		LightView view2 = new LightView(1);
 		jf.add(view.getCarPanel());
+		jf.add(view2.getLightPanel());
 	}
 
 	@Override
