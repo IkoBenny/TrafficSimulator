@@ -5,9 +5,6 @@ import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import builder.CarBuilder;
-import builder.CarBuilderDirector;
 import lombok.Getter;
 import sim.Constants.SimulationMode;
 

@@ -2,8 +2,6 @@ package sim;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JSlider;
-import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 
 import java.awt.event.ActionListener;
