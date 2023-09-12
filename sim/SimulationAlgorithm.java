@@ -85,6 +85,7 @@ public class SimulationAlgorithm implements Command {
 						JPanel panel2 = new JPanel();
 						frame.add(panel2);
 						frame.add(panel);
+						frame.setSize(1600, 475);
 						frame.setLayout(new GridLayout(2,0));
 						
 						for (int i =0; i< mvc.getV().getCarViews().size(); i++) {

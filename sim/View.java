@@ -11,13 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import lombok.Data;
-import lombok.Getter;
-
 import lombok.Data;
 import lombok.Getter;
 
@@ -29,9 +26,12 @@ public class View implements Runnable, ChangeListener, EventListener {
 	ArrayList<CarView> carViews;
 	ArrayList<LightView> lightViews;
 	JPanel buttonPanel;
+	JPanel carsPanel;
+	JPanel lightsPanel;
 	JSlider lightsSlider;
 	JSlider carsSlider;
-	
+	JLabel carsLabel;
+	JLabel lightsLabel;
 	JButton start;
 	JButton stop;
 	JButton pause;
@@ -81,14 +81,17 @@ public class View implements Runnable, ChangeListener, EventListener {
 		pause.setEnabled(false);
 		stop.setEnabled(false);
 
+		carsLabel= new JLabel(Constants.CARS);
+		lightsLabel = new JLabel(Constants.LIGHTS);
 		carViews = new ArrayList<>();	
 		lightViews = new ArrayList<>();
 		
 		// Instantiate Panels
 		containerPanel = new JPanel();
 		buttonPanel = new JPanel();
-		CarView cv = new CarView(0); 
 		containerPanel.add(buttonPanel);
+		carsPanel = new JPanel();
+		lightsPanel = new JPanel();
 		
 		//Instantiate Sliders	
 		carsSlider = new JSlider(1, 5, 3);
@@ -104,16 +107,19 @@ public class View implements Runnable, ChangeListener, EventListener {
 		buttonPanel.add(pause);
 		buttonPanel.add(continueButton);
 		buttonPanel.add(stop);
-		buttonPanel.add(carsSlider);
-		buttonPanel.add(lightsSlider);
-		buttonPanel.add(cv.getCarPanel());
-		containerPanel.setLayout(new GridLayout());
+		carsPanel.add(carsLabel);
+		carsPanel.add(carsSlider);
+		lightsPanel.add(lightsLabel);
+		lightsPanel.add(lightsSlider);
+		containerPanel.add(carsPanel);
+		containerPanel.add(lightsPanel);
+		containerPanel.setLayout(new GridLayout(3,0));
 
 		// Instantiate Frame
 		frame = new JFrame("Traffic Simulator");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
-		frame.setSize(1600, 475);
+		frame.setSize(600, 275);
 		frame.setVisible(true);
 		frame.add(containerPanel);
 		frame.setLayout(new GridLayout(2, 0));
