@@ -18,6 +18,8 @@ public class Constants {
 	public static final String STOP = "STOP";
 	public static final String INIT = "INIT";
 	public static final String CONTINUE = "CONTINUE";
+	public static final String CARS = "CARS";
+	public static final String LIGHTS = "LIGHTS";
 	public static final Point2D START_POSITION = new Point2D.Double(0.0, 0.0);
 
 	public enum TrafficLightColor {
