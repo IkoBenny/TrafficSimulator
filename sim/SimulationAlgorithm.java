@@ -6,11 +6,13 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import lombok.Getter;
 import sim.Constants.SimulationMode;
 import wrappers.CarDTO;
 import wrappers.LightDTO;
+import wrappers.TimeDTO;
 
 @Getter
 public class SimulationAlgorithm implements Command {
@@ -57,6 +59,9 @@ public class SimulationAlgorithm implements Command {
 						l.start();
 					}	
 					
+					TimeDTO t = new TimeDTO(mvc);
+					t.start();
+					
 					mvc.getM().started();
 				}	
 				break;
@@ -68,6 +73,7 @@ public class SimulationAlgorithm implements Command {
 						lights.execute();
 						BuildCars cars = new BuildCars(mvc);
 						cars.execute();
+						
 						
 						for (int i =0; i< Model.getCars().size(); i++) {
 							CarView cv = new CarView(i);
@@ -82,8 +88,10 @@ public class SimulationAlgorithm implements Command {
 						JFrame frame = new JFrame();
 						JPanel panel = new JPanel();
 						JPanel panel2 = new JPanel();
+						JTextField time = mvc.getV().getTime();
 						frame.add(panel2);
 						frame.add(panel);
+						frame.add(time);
 						frame.setSize(1600, 475);
 						frame.setLayout(new GridLayout(2,0));
 						
