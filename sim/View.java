@@ -27,6 +27,7 @@ public class View implements Runnable, ChangeListener, EventListener {
 	JPanel buttonPanel;
 	JPanel carsPanel;
 	JPanel lightsPanel;
+	JPanel timePanel;
 	JSlider lightsSlider;
 	JSlider carsSlider;
 	JLabel carsLabel;
@@ -35,7 +36,6 @@ public class View implements Runnable, ChangeListener, EventListener {
 	JButton stop;
 	JButton pause;
 	JButton continueButton;
-	
 	JTextField time;
 
 	public View() {
@@ -84,13 +84,15 @@ public class View implements Runnable, ChangeListener, EventListener {
 		lightsLabel = new JLabel(Constants.LIGHTS);
 		carViews = new ArrayList<>();	
 		lightViews = new ArrayList<>();
-		
+		time = new JTextField(20);
 		// Instantiate Panels
 		containerPanel = new JPanel();
 		buttonPanel = new JPanel();
 		containerPanel.add(buttonPanel);
 		carsPanel = new JPanel();
 		lightsPanel = new JPanel();
+		timePanel = new JPanel();
+		timePanel.add(time);
 		
 		//Instantiate Sliders	
 		carsSlider = new JSlider(1, 5, 3);
@@ -112,13 +114,14 @@ public class View implements Runnable, ChangeListener, EventListener {
 		lightsPanel.add(lightsSlider);
 		containerPanel.add(carsPanel);
 		containerPanel.add(lightsPanel);
-		containerPanel.setLayout(new GridLayout(3,0));
+		containerPanel.add(timePanel);
+		containerPanel.setLayout(new GridLayout(4,0));
 
 		// Instantiate Frame
 		frame = new JFrame("Traffic Simulator");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
-		frame.setSize(600, 275);
+		frame.setSize(500, 325);
 		frame.setVisible(true);
 		frame.add(containerPanel);
 		frame.setLayout(new GridLayout(2, 0));
