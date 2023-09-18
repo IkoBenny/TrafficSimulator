@@ -1,8 +1,6 @@
 package sim;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
