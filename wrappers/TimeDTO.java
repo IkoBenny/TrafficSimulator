@@ -4,18 +4,15 @@ import javax.swing.SwingUtilities;
 
 import interfaces.ThreadWrapperInterface;
 import sim.Constants;
-import sim.Model;
 import sim.Time;
-import sim.View;
-import sim.Constants.SimulationMode;
 import sim.Mediator;
 
-public class TimeWrapper extends Thread implements ThreadWrapperInterface {
+public class TimeDTO extends Thread implements ThreadWrapperInterface {
 	Mediator mvc;
 	Time  timeObj;
 
 	
-	public TimeWrapper(Mediator mvc) {
+	public TimeDTO(Mediator mvc) {
 		this.mvc = mvc;
 		timeObj = new Time();
 	}

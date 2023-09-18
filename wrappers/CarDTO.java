@@ -3,11 +3,7 @@ package wrappers;
 import javax.swing.SwingUtilities;
 
 import interfaces.ThreadWrapperInterface;
-import sim.Car;
 import sim.Constants;
-import sim.Model;
-import sim.View;
-import sim.Constants.SimulationMode;
 import sim.Mediator;
 
 public class CarDTO extends Thread implements ThreadWrapperInterface {

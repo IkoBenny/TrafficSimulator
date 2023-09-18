@@ -42,11 +42,13 @@ public class Controller implements ActionListener, ChangeListener {
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		int cars = mvc.getV().getCarsSlider().getValue();
-		int lights =  mvc.getV().getLightsSlider().getValue();
-		
-		String carsText = Integer.toString(cars);
-		String lightsText = Integer.toString(lights);
+		/*
+		 * int cars = mvc.getV().getCarsSlider().getValue(); int lights =
+		 * mvc.getV().getLightsSlider().getValue();
+		 * 
+		 * String carsText = Integer.toString(cars); String lightsText =
+		 * Integer.toString(lights);
+		 */
 		
 		//this.speed.setText(speedText);
 		//this.position.setText(positionText);

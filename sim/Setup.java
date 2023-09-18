@@ -2,8 +2,6 @@ package sim;
 
 import javax.swing.SwingUtilities;
 
-import builder.CarBuilder;
-import builder.CarBuilderDirector;
 
 public class Setup implements Command {
 	private Mediator mvc;
