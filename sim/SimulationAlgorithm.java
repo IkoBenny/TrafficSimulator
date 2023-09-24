@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import lombok.Getter;
@@ -85,15 +86,22 @@ public class SimulationAlgorithm implements Command {
 							mvc.getV().getLightViews().add(lv);
 						}
 						
-						JFrame frame = new JFrame();
+						JScrollPane scrollPane;
+						JScrollPane scrollPane2; 
+						JFrame frame = new JFrame("TRAFFIC SIMULATOR V 1.0");
 						JPanel panel = new JPanel();
 						JPanel panel2 = new JPanel();
+						JPanel panel3 = new JPanel();
+						
 						JTextField time = mvc.getV().getTime();
-						frame.add(panel2);
-						frame.add(panel);
-						frame.add(time);
-						frame.setSize(1600, 475);
-						frame.setLayout(new GridLayout(2,0));
+						panel3.add(time);
+						scrollPane = new JScrollPane(panel);
+						scrollPane2 = new JScrollPane(panel2);
+						frame.add(scrollPane2);
+						frame.add(scrollPane);
+						frame.add(panel3);
+						frame.setSize(1410, 600);
+						frame.setLayout(new GridLayout(3,0));
 						
 						for (int i =0; i< mvc.getV().getCarViews().size(); i++) {
 							panel.add(mvc.getV().getCv(i).getCarPanel());
