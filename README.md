@@ -34,8 +34,8 @@ There are currently no planned changes for this project.
   - Distributed Applications
   - Monolothic Applications
     
-* Monotask Architectures
-* Multitask Architectures
+  * Monotask Architectures
+  * Multitask Architectures
 
   - Object Serialization/Deserialization
   - Enumeration
