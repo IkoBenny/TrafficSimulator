@@ -2,48 +2,49 @@
 
 <details>
 <summary>Project Background</summary>
-The Capstone Project for Computer Science at UMGC. A concurrent Java program written using Threads, Listeners, and Event Handlers. Originally assigned in 2020, but never fully completed. This project is a complete rewrite, for educational purposes.  
-TrafficLightDescription.PDF is where interested parties may find original assignment details. 
+The Capstone Project for the Computer Science program at UMGC.
+A concurrent Java program written using Threads, Listeners, and Event Handlers.
+TrafficLightDescription.PDF is where interested parties may find additional assignment details. 
 </details>
 
 <details>
 <summary>Project Status</summary>
-This project is currently in development. At this moment, there is no completion date. 
+This project has completed development.
+This project was developed using Waterfall methodlogy and is currently in maintenance phase. 
 </details>
 
 <details>
 <summary>Planned Changes</summary>
-There are numerous changes to be made. There is no priority for completion of features.
-
-  - Add Real Time Heads-up Display, using Graphics.
-  - Support for additional cars/traffic lights.
+There are currently no planned changes for this project.  
 </details>
 
 <details>
 <summary>Concepts Explored</summary>
-  
-  - Concurrent Processing
-  - Distributed Applications
-  - Enumeration
-  - EPOCH time
-  - Event Handling
-    - Anonymous Class.
-    - Another Class.
-    - Within Class.
-  - Git
-  - Monolothic
-  - Monotask
-  - Multitask Architectures
-  - Multi Threaded Processing
-  - MVC Model-View-Controller
-  - Object Serialization/Deserialization
-  - Real Time Processing
-  - Real Time Specification for Java (RTSJ)
+
+  - Builder Pattern
+  - Command Pattern
   - Singleton Pattern
   - Strategy Pattern
+  - MVC Pattern
+  
+  - Concurrent Processing
+  - Multi Threaded Processing
+  - Real Time Processing
+  
+  - Distributed Applications
+  - Monolothic Applications
+    
+  - Monotask Architectures
+  - Multitask Architectures
+
+  - Object Serialization/Deserialization
+  - Enumeration
+  - EPOCH time
+  - Git
+  - Real Time Specification for Java (RTSJ)
+
 </details>
 
-<details>
 <summary>Code Review</summary>
 This section is an honest evaluation of my previously submitted coursework. This is where I take a look at my previous approach, and 
 try to explain shortcomings, fix issues, demonstrate learning, etc. 
