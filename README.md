@@ -10,7 +10,6 @@ TrafficLightDescription.PDF is where interested parties may find additional assi
 <details>
 <summary>Project Status</summary>
 This project has completed development.
-This project was developed using Waterfall methodlogy and is currently in maintenance phase. 
 </details>
 
 <details>
