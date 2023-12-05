@@ -20,23 +20,23 @@ There are currently no planned changes for this project.
 <details>
 <summary>Design Patterns Explored</summary>
   - Builder Pattern<br>
-  - Command Pattern
-  - Singleton Pattern
-  - Strategy Pattern
-  - MVC Pattern
+  - Command Pattern<br>
+  - Singleton Pattern<br>
+  - Strategy Pattern<br>
+  - MVC Pattern<br>
 </details>
 
 <details>
 <summary>Concepts Explored</summary>
 <summary>Processing</summary>
-  * Concurrent Processing
-  * Multi Threaded Processing
-  * Real Time Processing
+  * Concurrent Processing<br>
+  * Multi Threaded Processing<br>
+  * Real Time Processing<br>
 <summary>Application Architechture</summary>
-  * Distributed Applications
-  * Monolothic Applications  
-  * Monotask Architectures
-  * Multitask Architectures
+  * Distributed Applications<br>
+  * Monolothic Applications<br> 
+  * Monotask Architectures<br>
+  * Multitask Architectures<br>
 </details>
   
 
