@@ -29,7 +29,7 @@ There are currently no planned changes for this project.
 <details>
 <summary>Concepts Explored</summary>
 <summary>Processing</summary>
-<details>
+</details>
   * Concurrent Processing
   * Multi Threaded Processing
   * Real Time Processing
