@@ -19,7 +19,7 @@ There are currently no planned changes for this project.
 
 <details>
 <summary>Design Patterns Explored</summary>
-  - Builder Pattern
+  - Builder Pattern<br>
   - Command Pattern
   - Singleton Pattern
   - Strategy Pattern
