@@ -14,12 +14,12 @@ This project is in maintenance phase. Original project requirements have been me
 
 <details>
 <summary>Planned Changes</summary>
-  - Change landing page to display time on initial load
-  - Add Dark Mode
-  - Add in-context help
-  - Change panels in UI to display many more components at a time
-  - Fix TrafficLight bug (Does not stop on STOP) only stops being displayed
-  - Add application exit on STOP press
+  - Change landing page to display time on initial load<br>
+  - Add Dark Mode<br>
+  - Add in-context help<br>
+  - Change panels in UI to display many more components at a time<br>
+  - Fix TrafficLight bug (Does not stop on STOP) only stops being displayed<br>
+  - Add application exit on STOP press<br>
 </details>
 
 <details>
