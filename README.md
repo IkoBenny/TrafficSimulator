@@ -29,11 +29,10 @@ There are currently no planned changes for this project.
 <details>
 <summary>Concepts Explored</summary>
 <summary>Processing</summary>
-</details>
   * Concurrent Processing
   * Multi Threaded Processing
   * Real Time Processing
-</details>
+<summary>Application Architechture</summary>
   * Distributed Applications
   * Monolothic Applications  
   * Monotask Architectures
