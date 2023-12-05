@@ -3,7 +3,7 @@
 <details>
 <summary>Project Background</summary>
 The Capstone Project for the Computer Science program at UMGC.
-A concurrent Java program written using Threads, Listeners, and Event Handlers.
+A concurrent Java program written using Swing, Threads, Listeners, and Event Handlers.
 TrafficLightDescription.PDF is where interested parties may find additional assignment details. 
 </details>
 
