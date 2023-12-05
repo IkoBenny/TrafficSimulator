@@ -18,31 +18,32 @@ There are currently no planned changes for this project.
 </details>
 
 <details>
-<summary>Concepts Explored</summary>
-
+<summary>Design Patterns Explored</summary>
   - Builder Pattern
   - Command Pattern
   - Singleton Pattern
   - Strategy Pattern
   - MVC Pattern
-  
+</details>
+
+<details>
+<summary>Concepts Explored</summary>
+<summary>Processing</summary>
+<details>
   * Concurrent Processing
   * Multi Threaded Processing
   * Real Time Processing
-  
-  - Distributed Applications
-  - Monolothic Applications
-    
+</details>
+  * Distributed Applications
+  * Monolothic Applications  
   * Monotask Architectures
   * Multitask Architectures
-
-  - Object Serialization/Deserialization
-  - Enumeration
-  - EPOCH time
-  - Git
-  - Real Time Specification for Java (RTSJ)
-
 </details>
+  
+
+
+
+
 
 
 
