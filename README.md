@@ -9,12 +9,17 @@ TrafficLightDescription.PDF is where interested parties may find additional assi
 
 <details>
 <summary>Project Status</summary>
-This project has completed development.
+This project is in maintenance phase. Original project requirements have been met. Please see TrafficLightDescription.PDF for original requirements.
 </details>
 
 <details>
 <summary>Planned Changes</summary>
-There are currently no planned changes for this project.  
+  - Change landing page to display time on initial load
+  - Add Dark Mode
+  - Add in-context help
+  - Change panels in UI to display many more components at a time
+  - Fix TrafficLight bug (Does not stop on STOP) only stops being displayed
+  - Add application exit on STOP press
 </details>
 
 <details>
