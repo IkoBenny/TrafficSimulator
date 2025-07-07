@@ -1,0 +1,42 @@
+<project xmlns="https://maven.apache.org/POM/4.0.0"
+>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>demo-project.zip-expanded</groupId>
+    <artifactId>demo-project.zip-expanded</artifactId><![CDATA[
+    ]]><version>0.0.1-SNAPSHOT</version>
+    <name>Traffic Simulator</name>
+    <description>a modular, builder-based architecture that allows users to dynamically create and simulate traffic
+        elements such as cars and traffic lights. Built in Java using Threads, Listeners, and Event Handlers, this
+        simulator offers a scrollable, interactive GUI and real-time processing of traffic behaviors.
+    </description>
+    <properties>
+        <java.version>21</java.version>
+    </properties>
+    <dependencies>
+        <!-- SLF4J API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.17</version>
+        </dependency>
+        <dependency>
+            <groupId><![CDATA[org.projectlombok]]></groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.38</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <sourceDirectory>./</sourceDirectory>
+        <testSourceDirectory>./</testSourceDirectory>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>21</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
