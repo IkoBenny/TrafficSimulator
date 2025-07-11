@@ -13,13 +13,13 @@ public class BuildLights implements Command {
 	}
 
 	public void build() {
-		for(int i=0; i < mvc.getV().lightsSlider.getValue(); i++) {
-			TrafficLight light = mvc.getM().newLight();
-			mvc.getM().addLight(light);
+		for(int i=0; i < mvc.getView().lightsSlider.getValue(); i++) {
+			TrafficLight light = mvc.getModel().newLight();
+			mvc.getModel().addLight(light);
 		}
 		
-		for(int i=0; i < mvc.getV().lightsSlider.getValue(); i++) {
-			mvc.getM().startLight(i);
+		for(int i=0; i < mvc.getView().lightsSlider.getValue(); i++) {
+			mvc.getModel().startLight(i);
 		}
 	}
 	
