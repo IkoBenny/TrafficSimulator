@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface ThreadWrapperInterface {
+public interface RunnableWrapperInterface {
 	public void startThread();
 }

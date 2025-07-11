@@ -18,14 +18,14 @@ public class BuildCars implements Command {
 	}
 
 	private void buildCars() {
-		for (int i = 0; i < mvc.getV().carsSlider.getValue(); i++) {
+		for (int i = 0; i < mvc.getView().carsSlider.getValue(); i++) {
 			director.construct();
 			Car car = builder.getResult();
-			mvc.getM().addCar(car);	
+			mvc.getModel().addCar(car);
 		}
 
-		for (int i = 0; i < mvc.getV().carsSlider.getValue(); i++) {
-			mvc.getM().startCar(i);
+		for (int i = 0; i < mvc.getView().carsSlider.getValue(); i++) {
+			mvc.getModel().startCar(i);
 		}
 	}
 }

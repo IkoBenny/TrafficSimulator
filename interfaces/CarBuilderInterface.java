@@ -2,7 +2,7 @@ package interfaces;
 
 import sim.Car;
 
-public interface CarBuilderInterface {
+public interface CarBuilder {
 	public abstract void build();
 	public abstract void buildA();
 	public abstract void buildB();

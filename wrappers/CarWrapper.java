@@ -4,17 +4,19 @@ import javax.swing.SwingUtilities;
 
 import interfaces.ThreadWrapperInterface;
 import sim.Constants;
-import sim.Time;
 import sim.Mediator;
 
-public class TimeDTO extends Thread implements ThreadWrapperInterface {
+public class CarWrapper extends Thread implements ThreadWrapperInterface {
 	Mediator mvc;
-	Time  timeObj;
-
+	double speed;
+	String position;
+	int id;
 	
-	public TimeDTO(Mediator mvc) {
+	public CarWrapper(Mediator mvc, double speed, String position, int id) {
 		this.mvc = mvc;
-		timeObj = new Time();
+		this.speed = speed;
+		this.position = position;
+		this.id = id;
 	}
 	
 	public void run() {
@@ -26,17 +28,18 @@ public class TimeDTO extends Thread implements ThreadWrapperInterface {
 		for (;;) {
 			try {
 				Thread.sleep(1000);
-				String s = timeObj.start();
 				if (mvc.getM().getMode().equals(Constants.SimulationMode.STOP) == false
 						&& mvc.getM().getMode().equals(Constants.SimulationMode.PAUSE) == false) {
 					SwingUtilities.invokeLater(new Runnable() {
 						public void run() {
-							mvc.getV().getTime().setText(s);
+							update();
+							mvc.getV().getCarViews().get(id).getSpeed().setText(Double.toString(speed));
+							mvc.getV().getCarViews().get(id).getPosition().setText(position);
 							mvc.getV().getFrame().repaint();
 						}
 					});
-				}		
-				else if (mvc.getM().getMode().equals(Constants.SimulationMode.PAUSE)) {
+
+				} else if (mvc.getM().getMode().equals(Constants.SimulationMode.PAUSE)) {
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -44,5 +47,9 @@ public class TimeDTO extends Thread implements ThreadWrapperInterface {
 		}
 	}
 
+	
+	public void update() {
+		position = mvc.getM().getCar(id).getPositionAsString();
+		speed = mvc.getM().getCar(id).getCurrentSpeed();
+	}
 }
-
