@@ -14,9 +14,4 @@ public class Scheduler {
 		scheduler.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
 	}
 
-	public static void main(String[] args) {
-		Scheduler s = new Scheduler();
-		Time t = new Time();
-		s.schedule_task_per_second_no_delay(t);
-	}
 }
