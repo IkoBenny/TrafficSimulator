@@ -1,24 +1,22 @@
 package sim;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-/*import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;*/
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Scheduler {
-	Timer timer;
+	ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
 	public Scheduler() {
-		timer = new Timer();
 	}
 
-	public void schedule(TimerTask task, Long wait, Long interval) {
-		timer.schedule(task, wait, interval);
+	public void schedule_task_per_second_no_delay(Runnable task){
+		scheduler.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
 	}
 
-	public void cancel() {
-		timer.cancel();
+	public static void main(String[] args) {
+		Scheduler s = new Scheduler();
+		Time t = new Time();
+		s.schedule_task_per_second_no_delay(t);
 	}
-
 }

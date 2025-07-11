@@ -1,42 +1,26 @@
 package sim;
 
 import java.time.LocalTime;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Time {
-		private String time;
-		private static Logger log = LoggerFactory.getLogger(Time.class);
-		
-		public Time () {
-			log.info("Inside Time()...");
-			log.info("Leaving Time()...");
-		}
-		
-		public String getTime() {
-			log.info("Inside Time.getTime()...");
-			timestamp();
-			log.info("Leaving Time.getTime()...");
-			return time;
-		}
+@Getter
+public class Time implements Runnable {
+    private String time;
+    private static final Logger log = LoggerFactory.getLogger(Time.class);
 
-		private synchronized void timestamp() {
-			log.info("Inside Time.timestamp(){}...", time);
-			time =  LocalTime.now().toString();
-			notify();
-			log.info("Leaving Time.timestamp()...", time);
-		}
+    public Time() {
+        log.info("Time()...");
+    }
 
-		public String stop() {
-			return null;
-		}
+    private void timestamp() {
+        log.info("Time.timestamp(){}...", time);
+		time = LocalTime.now().toString();
+    }
 
-		public String start() {
-			return getTime();
-		}
-
-		public String pause() {
-			return getTime();
-		}
-		
-	}
+    @Override
+    public void run() {
+		timestamp();
+    }
+}
